@@ -10,4 +10,12 @@ public class ArrayChanging {
         arr.setElement(second, elem1);
         return arr;
     }
+    public CustomerArray mod(CustomerArray arr, int value)  {
+        int len = arr.length();
+        for(int i = 0; i < len; i++) {
+            int current = arr.getElement(i);
+            arr.setElement(i, current % value);
+        }
+        return arr;
+    }
 }

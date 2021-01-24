@@ -6,7 +6,7 @@ public class CustomerArray {
         this.arr = arr;
     }
     public CustomerArray(int n) {
-        if(n < 0) {
+        if(n < 1) {
             throw new NegativeArraySizeException();
         }
         arr = new int[n];
