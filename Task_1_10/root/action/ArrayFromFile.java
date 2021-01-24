@@ -16,7 +16,7 @@ public class ArrayFromFile {
     public ArrayList<ArrayList<String>> arrayReading(String path) throws Exception {
         FileReader fr = new FileReader(path);
         Scanner scan = new Scanner(fr);
-        final String SEPARATORS = "[ ,;]";
+        final String SEPARATORS = "[ ,;@]";
         ArrayList<ArrayList<String>> listOfArrays = new ArrayList<>();
         while (scan.hasNextLine()) {
             ArrayList<String> array = new ArrayList<>();

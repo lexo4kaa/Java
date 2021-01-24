@@ -3,11 +3,11 @@ package root.action;
 import root.entity.CustomerArray;
 
 public class ArrayChanging {
-    public CustomerArray swapTwoElements(CustomerArray arr, int first, int second) {
-        int elem1 = arr.getElement(first);
-        int elem2 = arr.getElement(second);
-        arr.setElement(first, elem2);
-        arr.setElement(second, elem1);
+    public CustomerArray swapTwoElements(CustomerArray arr, int elem1, int elem2) {
+        int first = arr.getElement(elem1);
+        int second = arr.getElement(elem2);
+        arr.setElement(elem1, second);
+        arr.setElement(elem2, first);
         return arr;
     }
     public CustomerArray mod(CustomerArray arr, int value)  {
