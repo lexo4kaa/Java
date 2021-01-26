@@ -1,31 +1,33 @@
 package root.entity;
 
+import root.exception.ArrayException;
+
 public class CustomerArray {
     private int[] arr;
     public CustomerArray(int[] arr) {
         this.arr = arr;
     }
-    public CustomerArray(int n) {
+    public CustomerArray(int n) throws ArrayException {
         if(n < 0) {
-            throw new NegativeArraySizeException();
+            throw new ArrayException("Negative array size: " + n);
         }
         arr = new int[n];
     }
     public int length() {
         return arr.length;
     }
-    public int getElement(int i) {
+    public int getElement(int i) throws ArrayException {
         if (checkRange(i)) {
             return arr[i];
         } else {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new ArrayException("Index is out of range");
         }
     }
-    public void setElement(int i, int value) {
+    public void setElement(int i, int value) throws ArrayException {
         if (checkRange(i)) {
             arr[i] = value;
         } else {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new ArrayException("Index is out of range");
         }
     }
     private boolean checkRange(int i) {// check array range

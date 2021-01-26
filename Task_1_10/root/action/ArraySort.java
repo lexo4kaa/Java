@@ -1,9 +1,10 @@
 package root.action;
 
 import root.entity.CustomerArray;
+import root.exception.ArrayException;
 
 public class ArraySort {
-    public CustomerArray selectionSort(CustomerArray arr) {
+    public CustomerArray selectionSort(CustomerArray arr) throws ArrayException {
         ArrayChanging a = new ArrayChanging();
         int len = arr.length();
         for(int j = 0; j < len; j++) {
@@ -19,7 +20,7 @@ public class ArraySort {
         }
         return arr;
     }
-    public CustomerArray bubbleSort(CustomerArray arr) {
+    public CustomerArray bubbleSort(CustomerArray arr) throws ArrayException {
         ArrayChanging a = new ArrayChanging();
         int len = arr.length();
         for(int i = 0; i < len; i++) {
@@ -31,7 +32,7 @@ public class ArraySort {
         }
         return arr;
     }
-    public CustomerArray insertionSort(CustomerArray arr) {
+    public CustomerArray insertionSort(CustomerArray arr) throws ArrayException {
         int len = arr.length();
         for(int i = 1; i < len; i++) {
             int current = arr.getElement(i);

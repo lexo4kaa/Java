@@ -1,9 +1,10 @@
 package root.action;
 
 import root.entity.CustomerArray;
+import root.exception.ArrayException;
 
 public class ArrayCalculation {
-    public int minElement(CustomerArray arr) {
+    public int minElement(CustomerArray arr) throws ArrayException {
         int min = arr.getElement(0);
         int len = arr.length();
         for (int i = 1; i < len; i++) {
@@ -13,7 +14,7 @@ public class ArrayCalculation {
         }
         return min;
     }
-    public int maxElement(CustomerArray arr) {
+    public int maxElement(CustomerArray arr) throws ArrayException {
         int max = arr.getElement(0);
         int len = arr.length();
         for (int i = 1; i < len; i++) {
@@ -23,7 +24,7 @@ public class ArrayCalculation {
         }
         return max;
     }
-    public int sumOfElements(CustomerArray arr) {
+    public int sumOfElements(CustomerArray arr) throws ArrayException {
         int sum = 0;
         int len = arr.length();
         for (int i = 0; i < len; i++) {
@@ -31,10 +32,10 @@ public class ArrayCalculation {
         }
         return sum;
     }
-    public double avgOfElements(CustomerArray arr) {
+    public double avgOfElements(CustomerArray arr) throws ArrayException {
         return (double) sumOfElements(arr)/(double)arr.length();
     }
-    public int countOfPositiveElements(CustomerArray arr) {
+    public int countOfPositiveElements(CustomerArray arr) throws ArrayException {
         int count = 0;
         int len = arr.length();
         for (int i = 0; i < len; i++) {
@@ -44,7 +45,7 @@ public class ArrayCalculation {
         }
         return count;
     }
-    public int countOfNegativeElements(CustomerArray arr) {
+    public int countOfNegativeElements(CustomerArray arr) throws ArrayException {
         int count = 0;
         int len = arr.length();
         for (int i = 0; i < len; i++) {

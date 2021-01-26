@@ -1,20 +1,34 @@
 package root.action;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import root.entity.CustomerArray;
+import root.exception.ArrayException;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class ArrayFromFile {
+    static Logger logger = LogManager.getLogger();
     /**
      * A function that reads a file containing arrays
      *
      * @param path - path to text file
      * @return listOfArray - a list, each element of which is an array, stored as a list
      */
-    public ArrayList<ArrayList<String>> arrayReading(String path) throws Exception {
-        FileReader fr = new FileReader(path);
+    public ArrayList<ArrayList<String>> arrayReading(String path) throws ArrayException {
+        FileReader fr;
+        try {
+            fr = new FileReader(path);
+        } catch (FileNotFoundException e) {
+            logger.log(Level.ERROR, "File not found", e);
+            throw new ArrayException("File not found");
+        }
         Scanner scan = new Scanner(fr);
         final String SEPARATORS = "[ ,;@]";
         ArrayList<ArrayList<String>> listOfArrays = new ArrayList<>();
@@ -27,7 +41,12 @@ public class ArrayFromFile {
             }
             listOfArrays.add(array);
         }
-        fr.close();
+        try {
+            fr.close();
+        } catch (IOException e) {
+            logger.log(Level.ERROR, "Сlosing problems ", e);
+            throw new ArrayException("Сlosing problems");
+        }
         return listOfArrays;
     }
     /**
@@ -36,7 +55,7 @@ public class ArrayFromFile {
      * @param arrayList - a list, each element of which is an array, stored as a list
      * @return arr - an integer array. if there is no integer array then 0
      */
-    public CustomerArray arraySelection(ArrayList<ArrayList<String>> arrayList) {
+    public CustomerArray arraySelection(ArrayList<ArrayList<String>> arrayList) throws ArrayException {
         for(int j = 0; j < arrayList.size(); j++) {
             ArrayList<String> array = arrayList.get(j);
             int[] resultArray = new int[array.size()];
