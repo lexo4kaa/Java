@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class ArrayFromFile {
     static Logger logger = LogManager.getLogger();
-    public List<List<String>> arrayReading(String path) throws ArrayException {
+    public static List<List<String>> arrayReading(String path) throws ArrayException {
         final String SEPARATORS = "[ ,;@]";
         List<List<String>> listOfArrays = new ArrayList<>();
         File f = new File(path);
@@ -35,7 +35,7 @@ public class ArrayFromFile {
         }
         return listOfArrays;
     }
-    public CustomerArray arraySelection(List<List<String>> arrayList) throws ArrayException {
+    public static CustomerArray arraySelection(List<List<String>> arrayList) throws ArrayException {
         for(List<String> array : arrayList) {
             int[] resultArray = new int[array.size()];
             boolean flag = true;
