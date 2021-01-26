@@ -6,58 +6,37 @@ import org.apache.logging.log4j.Logger;
 import root.entity.CustomerArray;
 import root.exception.ArrayException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
 import java.util.Scanner;
-
 
 public class ArrayFromFile {
     static Logger logger = LogManager.getLogger();
-    /**
-     * A function that reads a file containing arrays
-     *
-     * @param path - path to text file
-     * @return listOfArray - a list, each element of which is an array, stored as a list
-     */
-    public ArrayList<ArrayList<String>> arrayReading(String path) throws ArrayException {
-        FileReader fr;
-        try {
-            fr = new FileReader(path);
-        } catch (FileNotFoundException e) {
-            logger.log(Level.ERROR, "File not found", e);
-            throw new ArrayException("File not found");
-        }
-        Scanner scan = new Scanner(fr);
+    public List<List<String>> arrayReading(String path) throws ArrayException {
         final String SEPARATORS = "[ ,;@]";
-        ArrayList<ArrayList<String>> listOfArrays = new ArrayList<>();
-        while (scan.hasNextLine()) {
-            ArrayList<String> array = new ArrayList<>();
-            String line = scan.nextLine();
-            String[] splitLine = line.split(SEPARATORS);
-            for (String s : splitLine) {
-                array.add(s);
+        List<List<String>> listOfArrays = new ArrayList<>();
+        File f = new File(path);
+        if (f.exists() && f.isFile() && f.canRead()) {
+            try (Scanner input = new Scanner(f)) {
+                while (input.hasNextLine()) {
+                    List<String> array = new ArrayList<>();
+                    String line = input.nextLine();
+                    String[] splitLine = line.split(SEPARATORS);
+                    Collections.addAll(array, splitLine);
+                    listOfArrays.add(array);
+                }
+            } catch (FileNotFoundException e) {
+                logger.log(Level.ERROR, "File not found", e);
+                throw new ArrayException();
             }
-            listOfArrays.add(array);
-        }
-        try {
-            fr.close();
-        } catch (IOException e) {
-            logger.log(Level.ERROR, "Сlosing problems ", e);
-            throw new ArrayException("Сlosing problems");
         }
         return listOfArrays;
     }
-    /**
-     * A function that selects an integer array
-     *
-     * @param arrayList - a list, each element of which is an array, stored as a list
-     * @return arr - an integer array. if there is no integer array then 0
-     */
-    public CustomerArray arraySelection(ArrayList<ArrayList<String>> arrayList) throws ArrayException {
-        for(int j = 0; j < arrayList.size(); j++) {
-            ArrayList<String> array = arrayList.get(j);
+    public CustomerArray arraySelection(List<List<String>> arrayList) throws ArrayException {
+        for(List<String> array : arrayList) {
             int[] resultArray = new int[array.size()];
             boolean flag = true;
             for(int i = 0; i < array.size(); i++) {
@@ -71,8 +50,7 @@ public class ArrayFromFile {
                 }
             }
             if(flag) {
-                CustomerArray arr = new CustomerArray(resultArray);
-                return arr;
+                return new CustomerArray(resultArray);
             }
         }
         return new CustomerArray(1);
