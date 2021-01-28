@@ -4,46 +4,46 @@ import com.company.customer_array.exception.ArrayException;
 import com.company.customer_array.entity.CustomerArray;
 
 public class ArraySort {
-    public CustomerArray selectionSort(CustomerArray arr) throws ArrayException {
+    public CustomerArray selectionSort(CustomerArray array) throws ArrayException {
         ArrayChanging a = new ArrayChanging();
-        int len = arr.length();
+        int len = array.length();
         for(int j = 0; j < len; j++) {
-            int min = arr.getElement(j);
+            int min = array.getElement(j);
             int pos = j;
             for (int i = j + 1; i < len; i++) {
-                if (arr.getElement(i) < min) {
-                    min = arr.getElement(i);
+                if (array.getElement(i) < min) {
+                    min = array.getElement(i);
                     pos = i;
                 }
             }
-            arr = a.swapTwoElements(arr, j, pos);
+            array = a.swapTwoElements(array, j, pos);
         }
-        return arr;
+        return array;
     }
-    public CustomerArray bubbleSort(CustomerArray arr) throws ArrayException {
+    public CustomerArray bubbleSort(CustomerArray array) throws ArrayException {
         ArrayChanging a = new ArrayChanging();
-        int len = arr.length();
+        int len = array.length();
         for(int i = 0; i < len; i++) {
             for(int j = 1; j < len; j++) {
-                if(arr.getElement(j) < arr.getElement(j - 1)) {
-                    a.swapTwoElements(arr, j, j - 1);
+                if(array.getElement(j) < array.getElement(j - 1)) {
+                    a.swapTwoElements(array, j, j - 1);
                 }
             }
         }
-        return arr;
+        return array;
     }
-    public CustomerArray insertionSort(CustomerArray arr) throws ArrayException {
-        int len = arr.length();
+    public CustomerArray insertionSort(CustomerArray array) throws ArrayException {
+        int len = array.length();
         for(int i = 1; i < len; i++) {
-            int current = arr.getElement(i);
+            int current = array.getElement(i);
             int j = i;
-            while(j > 0 && current < arr.getElement(j - 1)) {
-                int elem = arr.getElement(j - 1);
-                arr.setElement(j, elem);
+            while(j > 0 && current < array.getElement(j - 1)) {
+                int elem = array.getElement(j - 1);
+                array.setElement(j, elem);
                 j--;
             }
-            arr.setElement(j, current);
+            array.setElement(j, current);
         }
-        return arr;
+        return array;
     }
 }

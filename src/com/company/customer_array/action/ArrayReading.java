@@ -14,9 +14,9 @@ public class ArrayReading {
     static Logger logger = LogManager.getLogger();
     public static List<String> arrayReading(String path) throws ArrayException {
         List<String> listOfArrays = new ArrayList<>();
-        File f = new File(path);
-        if (f.exists() && f.isFile() && f.canRead()) {
-            try (Scanner input = new Scanner(f)) {
+        File file = new File(path);
+        if (file.exists() && file.isFile() && file.canRead()) {
+            try (Scanner input = new Scanner(file)) {
                 while (input.hasNextLine()) {
                     String line = input.nextLine();
                     listOfArrays.add(line);
@@ -27,7 +27,7 @@ public class ArrayReading {
             }
         } else {
             logger.error("Problems with file");
-            throw new ArrayException("Problems with file");
+            throw new ArrayException("Problems with file " + path);
         }
         return listOfArrays;
     }

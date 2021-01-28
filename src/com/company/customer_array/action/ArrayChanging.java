@@ -4,19 +4,19 @@ import com.company.customer_array.entity.CustomerArray;
 import com.company.customer_array.exception.ArrayException;
 
 public class ArrayChanging {
-    public CustomerArray swapTwoElements(CustomerArray arr, int elem1, int elem2) throws ArrayException {
-        int first = arr.getElement(elem1);
-        int second = arr.getElement(elem2);
-        arr.setElement(elem1, second);
-        arr.setElement(elem2, first);
-        return arr;
+    public CustomerArray swapTwoElements(CustomerArray array, int elem1, int elem2) throws ArrayException {
+        int first = array.getElement(elem1);
+        int second = array.getElement(elem2);
+        array.setElement(elem1, second);
+        array.setElement(elem2, first);
+        return array;
     }
-    public CustomerArray mod(CustomerArray arr, int value) throws ArrayException {
-        int len = arr.length();
+    public CustomerArray mod(CustomerArray array, int value) throws ArrayException {
+        int len = array.length();
         for(int i = 0; i < len; i++) {
-            int current = arr.getElement(i);
-            arr.setElement(i, current % value);
+            int current = array.getElement(i);
+            array.setElement(i, current % value);
         }
-        return arr;
+        return array;
     }
 }

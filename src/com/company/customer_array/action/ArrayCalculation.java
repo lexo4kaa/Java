@@ -4,52 +4,52 @@ import com.company.customer_array.entity.CustomerArray;
 import com.company.customer_array.exception.ArrayException;
 
 public class ArrayCalculation {
-    public int minElement(CustomerArray arr) throws ArrayException {
-        int min = arr.getElement(0);
-        int len = arr.length();
+    public int minElement(CustomerArray array) throws ArrayException {
+        int min = array.getElement(0);
+        int len = array.length();
         for (int i = 1; i < len; i++) {
-            if(arr.getElement(i) < min) {
-                min = arr.getElement(i);
+            if(array.getElement(i) < min) {
+                min = array.getElement(i);
             }
         }
         return min;
     }
-    public int maxElement(CustomerArray arr) throws ArrayException {
-        int max = arr.getElement(0);
-        int len = arr.length();
+    public int maxElement(CustomerArray array) throws ArrayException {
+        int max = array.getElement(0);
+        int len = array.length();
         for (int i = 1; i < len; i++) {
-            if(arr.getElement(i) > max) {
-                max = arr.getElement(i);
+            if(array.getElement(i) > max) {
+                max = array.getElement(i);
             }
         }
         return max;
     }
-    public int sumOfElements(CustomerArray arr) throws ArrayException {
+    public int sumOfElements(CustomerArray array) throws ArrayException {
         int sum = 0;
-        int len = arr.length();
+        int len = array.length();
         for (int i = 0; i < len; i++) {
-            sum += arr.getElement(i);
+            sum += array.getElement(i);
         }
         return sum;
     }
-    public double avgOfElements(CustomerArray arr) throws ArrayException {
-        return (double) sumOfElements(arr)/(double)arr.length();
+    public double avgOfElements(CustomerArray array) throws ArrayException {
+        return (double)sumOfElements(array)/array.length();
     }
-    public int countOfPositiveElements(CustomerArray arr) throws ArrayException {
+    public int countOfPositiveElements(CustomerArray array) throws ArrayException {
         int count = 0;
-        int len = arr.length();
+        int len = array.length();
         for (int i = 0; i < len; i++) {
-            if(arr.getElement(i) > 0) {
+            if(array.getElement(i) > 0) {
                 count++;
             }
         }
         return count;
     }
-    public int countOfNegativeElements(CustomerArray arr) throws ArrayException {
+    public int countOfNegativeElements(CustomerArray array) throws ArrayException {
         int count = 0;
-        int len = arr.length();
+        int len = array.length();
         for (int i = 0; i < len; i++) {
-            if(arr.getElement(i) < 0) {
+            if(array.getElement(i) < 0) {
                 count++;
             }
         }

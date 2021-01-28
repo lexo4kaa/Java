@@ -11,46 +11,46 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 public class ArrayCalculationTest {
-    ArrayCalculation f;
+    ArrayCalculation obj;
     CustomerArray customerArray;
     @BeforeClass
     public void setUp() {
-        f = new ArrayCalculation();
+        obj = new ArrayCalculation();
     }
     @Test(dataProvider = "min")
     public void testMinElement(int[] array, int expected ) throws ArrayException {
         customerArray = new CustomerArray(array);
-        int actual = f.minElement(customerArray);
+        int actual = obj.minElement(customerArray);
         assertEquals(actual, expected);
     }
     @Test(dataProvider = "max")
     public void testMaxElement(int[] array, int expected ) throws ArrayException {
         customerArray = new CustomerArray(array);
-        int actual = f.maxElement(customerArray);
+        int actual = obj.maxElement(customerArray);
         assertEquals(actual, expected);
     }
     @Test(dataProvider = "sum")
     public void testSumOfElement(int[] array, int expected ) throws ArrayException {
         customerArray = new CustomerArray(array);
-        int actual = f.sumOfElements(customerArray);
+        int actual = obj.sumOfElements(customerArray);
         assertEquals(actual, expected);
     }
     @Test(dataProvider = "avg")
     public void testAvgOfElement(int[] array, double expected ) throws ArrayException {
         customerArray = new CustomerArray(array);
-        double actual = f.avgOfElements(customerArray);
+        double actual = obj.avgOfElements(customerArray);
         assertEquals(actual, expected, 0.001);
     }
     @Test(dataProvider = "positive_count")
     public void testCountOfPositiveElements(int[] array, int expected ) throws ArrayException {
         customerArray = new CustomerArray(array);
-        int actual = f.countOfPositiveElements(customerArray);
+        int actual = obj.countOfPositiveElements(customerArray);
         assertEquals(actual, expected);
     }
     @Test(dataProvider = "negative_count")
     public void testCountOfNegativeElements(int[] array, int expected ) throws ArrayException {
         customerArray = new CustomerArray(array);
-        int actual = f.countOfNegativeElements(customerArray);
+        int actual = obj.countOfNegativeElements(customerArray);
         assertEquals(actual, expected);
     }
     @DataProvider(name = "min")
@@ -91,7 +91,7 @@ public class ArrayCalculationTest {
     }
     @AfterClass
     public void tierDown() {
-        f = null;
+        obj = null;
         customerArray = null;
     }
 }

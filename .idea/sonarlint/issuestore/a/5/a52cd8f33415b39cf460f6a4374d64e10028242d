@@ -1,0 +1,10 @@
+
+P
+java:S1118
+":Add a private constructor to hide the implicit public one.(ôæâñ
+^
+java:S3457"AFormat specifiers should be used instead of string concatenation.(Î÷’û8Õ¦üÏô.
+Y
+java:S2629"7Use the built-in formatting to construct this argument.(ŒÑ€úÿÿÿÿ8ëÂÂĞô.
+c
+java:S3457"AFormat specifiers should be used instead of string concatenation.(ŒÑ€úÿÿÿÿ8ëÂÂĞô.

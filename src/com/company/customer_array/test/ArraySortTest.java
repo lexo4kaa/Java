@@ -11,30 +11,30 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 public class ArraySortTest {
-    ArraySort arraySort;
+    ArraySort obj;
     CustomerArray customerArray;
     @BeforeClass
     public void setUp() {
-        arraySort = new ArraySort();
+        obj = new ArraySort();
     }
     @Test(dataProvider = "bubble")
     public void testBubbleSort(int[] array, int[] expected ) throws ArrayException {
         customerArray = new CustomerArray(array);
-        customerArray = arraySort.bubbleSort(customerArray);
+        customerArray = obj.bubbleSort(customerArray);
         int[] actual = customerArray.getArray();
         assertEquals(actual, expected);
     }
     @Test(dataProvider = "insertion")
     public void testInsertionSort(int[] array, int[] expected ) throws ArrayException {
         customerArray = new CustomerArray(array);
-        customerArray = arraySort.insertionSort(customerArray);
+        customerArray = obj.insertionSort(customerArray);
         int[] actual = customerArray.getArray();
         assertEquals(actual, expected);
     }
     @Test(dataProvider = "insertion")
     public void testSelectionSort(int[] array, int[] expected ) throws ArrayException {
         customerArray = new CustomerArray(array);
-        customerArray = arraySort.selectionSort(customerArray);
+        customerArray = obj.selectionSort(customerArray);
         int[] actual = customerArray.getArray();
         assertEquals(actual, expected);
     }
@@ -58,7 +58,7 @@ public class ArraySortTest {
     }
     @AfterClass
     public void tierDown() {
-        arraySort = null;
+        obj = null;
         customerArray = null;
     }
 }
