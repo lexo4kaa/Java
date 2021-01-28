@@ -1,13 +1,14 @@
-package com.company.customer_array.action;
+package com.company.customer_array.parser;
 
 import com.company.customer_array.entity.CustomerArray;
 import com.company.customer_array.exception.ArrayException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-import static com.company.customer_array.action.ArrayReading.logger;
-
 public class ArrayParser {
+    static Logger logger = LogManager.getLogger();
     public static CustomerArray arrayParser(List<String> arrayList) throws ArrayException {
         final String SEPARATORS = "[ ,;@]";
         for(String line : arrayList) {

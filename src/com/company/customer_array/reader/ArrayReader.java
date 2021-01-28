@@ -1,4 +1,4 @@
-package com.company.customer_array.action;
+package com.company.customer_array.reader;
 
 import com.company.customer_array.exception.ArrayException;
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ArrayReading {
+public class ArrayReader {
     static Logger logger = LogManager.getLogger();
     public static List<String> arrayReading(String path) throws ArrayException {
         List<String> listOfArrays = new ArrayList<>();

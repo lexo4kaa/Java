@@ -1,6 +1,6 @@
 package com.company.customer_array.test;
 
-import com.company.customer_array.action.ArrayParser;
+import com.company.customer_array.parser.ArrayParser;
 import com.company.customer_array.entity.CustomerArray;
 import com.company.customer_array.exception.ArrayException;
 import org.testng.annotations.AfterClass;

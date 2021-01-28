@@ -3,8 +3,6 @@ x
 Hsrc/com/company/customer_array/action/ArrayCalculationWithIntStream.java,f\d\fdfe7127fae899e35ba6fd046ee496feaa1e9ea3
 d
 4src/com/company/customer_array/action/ArraySort.java,8\2\82e17ac10834503429a973be8a4619483617c571
-g
-7src/com/company/customer_array/action/ArrayReading.java,e\0\e0f0933d8e40632d438257fe6eb8ebc2f5cbd7cb
 f
 6src/com/company/customer_array/action/ArrayParser.java,a\5\a52cd8f33415b39cf460f6a4374d64e10028242d
 h
@@ -19,3 +17,7 @@ z
 Jsrc/com/company/customer_array/test/ArrayCalculationWithIntStreamTest.java,1\b\1b5641c12e90d9974abbda55b7cea7fc67440aef
 m
 =src/com/company/customer_array/test/ArrayCalculationTest.java,4\6\46550f17775ca60556b1a760b0ee93f462ed501b
+f
+6src/com/company/customer_array/reader/ArrayReader.java,1\a\1a57f32fb0bb4e3a84414a8b0bae06f1b221839b
+f
+6src/com/company/customer_array/parser/ArrayParser.java,d\4\d4a1be7f10ed36d6d0f7bee5c7116c72e70fde42
