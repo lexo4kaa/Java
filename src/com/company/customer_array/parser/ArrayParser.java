@@ -9,27 +9,33 @@ import java.util.List;
 
 public class ArrayParser {
     static Logger logger = LogManager.getLogger();
+    private static String SEPARATORS = "[ ,;@]";
     public static CustomerArray arrayParser(List<String> arrayList) throws ArrayException {
-        final String SEPARATORS = "[ ,;@]";
-        for(String line : arrayList) {
-            String[] splitLine = line.split(SEPARATORS);
-            int[] resultArray = new int[splitLine.length];
-            boolean flag = true;
-            for(int i = 0; i < splitLine.length; i++) {
-                String current = splitLine[i];
-                try {
-                    resultArray[i] = Integer.parseInt(current);
-                } catch (NumberFormatException e) {
-                    logger.error(current + " at position " + i + " is not an integer number");
-                    flag = false;
-                    break;
+        if (arrayList != null) {
+            for (String line : arrayList) {
+                String[] splitLine = line.split(SEPARATORS);
+                int[] resultArray = new int[splitLine.length];
+                boolean flag = true;
+                for (int i = 0; i < splitLine.length; i++) {
+                    String current = splitLine[i];
+                    try {
+                        resultArray[i] = Integer.parseInt(current);
+                    } catch (NumberFormatException e) {
+                        logger.error(current + " at position " + i + " is not an integer number");
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    return new CustomerArray(resultArray);
                 }
             }
-            if(flag) {
-                return new CustomerArray(resultArray);
-            }
+            logger.error("There are no integer array in " + arrayList);
+            throw new ArrayException("There are no integer array in " + arrayList);
         }
-        logger.error("There are no integer array in " + arrayList);
-        throw new ArrayException("There are no integer array in " + arrayList);
+        else {
+            logger.error("List is null");
+            throw new ArrayException("List is null");
+        }
     }
 }

@@ -7,11 +7,11 @@ public class CustomerArray {
     public CustomerArray(int[] array) {
         this.array = array;
     }
-    public CustomerArray(int n) throws ArrayException {
-        if(n < 0) {
-            throw new ArrayException("Negative array size: " + n);
+    public CustomerArray(int size) throws ArrayException {
+        if(size < 0) {
+            throw new ArrayException("Negative array size: " + size);
         }
-        array = new int[n];
+        array = new int[size];
     }
     public int length() {
         return array.length;

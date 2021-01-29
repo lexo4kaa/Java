@@ -22,11 +22,11 @@ public class ArrayReader {
                     listOfArrays.add(line);
                 }
             } catch (FileNotFoundException e) {
-                logger.error("File not found", e);
+                logger.error("File in " + path + " not found", e);
                 throw new ArrayException("File in " + path + " not found");
             }
         } else {
-            logger.error("Problems with file");
+            logger.error("Problems with file " + path);
             throw new ArrayException("Problems with file " + path);
         }
         return listOfArrays;
