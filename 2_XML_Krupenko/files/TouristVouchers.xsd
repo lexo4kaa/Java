@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="./TouristVouchers"
+        xmlns:tns="./TouristVouchers"
+        elementFormDefault="unqualified">
+
+    <element name="TouristVouchers">
+        <complexType>
+            <sequence>
+                <element name="tourist-voucher" type="tns:TouristVoucher"
+                         minOccurs="16" maxOccurs="unbounded" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="TouristVoucher">
+        <sequence>
+            <element name="voucher-number" type="tns:NumberVoucher" />
+            <element name="country" type="string" />
+            <element name="number-of-days" type="positiveInteger" minOccurs="2" />
+            <element name="start-date" type="date" />
+            <element name="cost" type="positiveInteger" minOccurs="100" />
+            <element name="hotel-characteristic"
+                     type="tns:HotelCharacteristic" />
+        </sequence>
+        <attribute name="transport" use="required">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="air"></enumeration>
+                    <enumeration value="railway"></enumeration>
+                    <enumeration value="auto"></enumeration>
+                    <enumeration value="ferry"></enumeration>
+                </restriction>
+            </simpleType>
+        </attribute>
+        <attribute name="type" use="required">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="weekend"></enumeration>
+                    <enumeration value="sightseeing"></enumeration>
+                    <enumeration value="rest"></enumeration>
+                    <enumeration value="pilgrimage"></enumeration>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <simpleType name="NumberVoucher">
+        <restriction base="ID">
+            <pattern value="([A-Z]){3}([0-9]){10}" />
+        </restriction>
+    </simpleType>
+
+    <complexType name="HotelCharacteristic">
+        <sequence>
+            <element name="stars" type="tns:Stars" />
+            <element name="rooms" type="tns:Rooms" />
+        </sequence>
+        <attribute name="food-type" use="optional" default="HB">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="OB"></enumeration>
+                    <enumeration value="BB"></enumeration>
+                    <enumeration value="HB"></enumeration>
+                    <enumeration value="FB"></enumeration>
+                    <enumeration value="AI"></enumeration>
+                    <enumeration value="UAI"></enumeration>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <simpleType name="Stars">
+        <restriction base="positiveInteger">
+            <minInclusive value="1" />
+            <maxInclusive value="5" />
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Rooms">
+        <restriction base="positiveInteger">
+            <minInclusive value="1" />
+            <maxInclusive value="4" />
+        </restriction>
+    </simpleType>
+
+</schema>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tourist-Vouchers xmlns:tns="./TouristVouchers"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="./TouristVouchers TouristVouchers.xsd ">
+
+    <tourist-voucher type="weekend" transport="air" >
+        <voucher-number>SWE0000000001</voucher-number>
+        <country>Sweden</country>
+        <number-of-days>3</number-of-days>
+        <start-date>2021-03-03</start-date>
+        <cost>500</cost>
+        <hotel-characteristic food-type="OB">
+            <stars>4</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="auto" type="rest">
+        <voucher-number>SPA0000000001</voucher-number>
+        <country>Spain</country>
+        <number-of-days>14</number-of-days>
+        <start-date>2021-09-04</start-date>
+        <cost>2500</cost>
+        <hotel-characteristic food-type="AI">
+            <stars>4</stars>
+            <rooms>1</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="railway" type="pilgrimage">
+        <voucher-number>ISR0000000001</voucher-number>
+        <country>Israel</country>
+        <number-of-days>5</number-of-days>
+        <start-date>2021-09-01</start-date>
+        <cost>500</cost>
+        <hotel-characteristic food-type="OB">
+            <stars>3</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="air" type="sightseeing">
+        <voucher-number>CHI0000000001</voucher-number>
+        <country>China</country>
+        <number-of-days>5</number-of-days>
+        <start-date>2022-06-15</start-date>
+        <cost>1000</cost>
+        <hotel-characteristic>
+            <stars>4</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="auto" type="sightseeing">
+        <voucher-number>HUN0000000001</voucher-number>
+        <country>Hungary</country>
+        <number-of-days>3</number-of-days>
+        <start-date>2021-09-01</start-date>
+        <cost>720</cost>
+        <hotel-characteristic food-type="BB">
+            <stars>4</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="air" type="sightseeing">
+        <voucher-number>HUN0000000002</voucher-number>
+        <country>Hungary</country>
+        <number-of-days>5</number-of-days>
+        <start-date>2022-09-01</start-date>
+        <cost>700</cost>
+        <hotel-characteristic food-type="OB">
+            <stars>4</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="air" type="rest">
+        <voucher-number>EGY0000000001</voucher-number>
+        <country>Egypt</country>
+        <number-of-days>14</number-of-days>
+        <start-date>2021-12-27</start-date>
+        <cost>3000</cost>
+        <hotel-characteristic food-type="AI">
+            <stars>5</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="air" type="rest">
+        <voucher-number>TUR0000000001</voucher-number>
+        <country>Turkey</country>
+        <number-of-days>14</number-of-days>
+        <start-date>2021-12-23</start-date>
+        <cost>2500</cost>
+        <hotel-characteristic food-type="UAI">
+            <stars>4</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="air" type="sightseeing">
+        <voucher-number>EGY0000000002</voucher-number>
+        <country>EGY</country>
+        <number-of-days>20</number-of-days>
+        <start-date>2021-05-20</start-date>
+        <cost>5000</cost>
+        <hotel-characteristic food-type="AI">
+            <stars>5</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="railway" type="pilgrimage">
+        <voucher-number>RUS0000000001</voucher-number>
+        <country>Russia</country>
+        <number-of-days>3</number-of-days>
+        <start-date>2021-06-01</start-date>
+        <cost>300</cost>
+        <hotel-characteristic>
+            <stars>3</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="railway" type="pilgrimage">
+        <voucher-number>RUS0000000002</voucher-number>
+        <country>Russia</country>
+        <number-of-days>3</number-of-days>
+        <start-date>2021-06-01</start-date>
+        <cost>300</cost>
+        <hotel-characteristic>
+            <stars>3</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="air" type="rest">
+        <voucher-number>RUS0000000003</voucher-number>
+        <country>Russia</country>
+        <number-of-days>14</number-of-days>
+        <start-date>2021-09-01</start-date>
+        <cost>1500</cost>
+        <hotel-characteristic food-type="BB">
+            <stars>4</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="air" type="sightseeing">
+        <voucher-number>BEL0000000001</voucher-number>
+        <country>Belgium</country>
+        <number-of-days>5</number-of-days>
+        <start-date>2021-05-25</start-date>
+        <cost>500</cost>
+        <hotel-characteristic>
+            <stars>4</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="railway" type="sightseeing">
+        <voucher-number>ITA0000000001</voucher-number>
+        <country>Italy</country>
+        <number-of-days>7</number-of-days>
+        <start-date>2021-06-01</start-date>
+        <cost>750</cost>
+        <hotel-characteristic>
+            <stars>4</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="railway" type="sightseeing">
+        <voucher-number>FRA0000000001</voucher-number>
+        <country>France</country>
+        <number-of-days>7</number-of-days>
+        <start-date>2021-09-01</start-date>
+        <cost>750</cost>
+        <hotel-characteristic>
+            <stars>4</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+    <tourist-voucher transport="railway" type="rest">
+        <voucher-number>ITA0000000002</voucher-number>
+        <country>Italy</country>
+        <number-of-days>7</number-of-days>
+        <start-date>2021-06-01</start-date>
+        <cost>1100</cost>
+        <hotel-characteristic food-type="AI">
+            <stars>4</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+    </tourist-voucher>
+
+</Tourist-Vouchers>
