@@ -1,10 +1,13 @@
-package com.company.xml_parsing.builder;
+package com.company.xml_parsing.handler;
 
-import com.company.xml_parsing.entity.HotelCharacteristic;
+import com.company.xml_parsing.builder.TouristVouchersSaxBuilder;
 import com.company.xml_parsing.entity.TouristVoucher;
+import com.company.xml_parsing.entity.RestVoucher;
+import com.company.xml_parsing.entity.SightseeingVoucher;
+import com.company.xml_parsing.entity.WeekendVoucher;
+import com.company.xml_parsing.entity.HotelCharacteristic;
 import com.company.xml_parsing.exception.ParserException;
 import com.company.xml_parsing.parsing.LocalDateParsing;
-import com.company.xml_parsing.parsing.TouristVoucherType;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -14,7 +17,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static com.company.xml_parsing.validation.TouristVoucherErrorHandler.logger;
+import static com.company.xml_parsing.handler.TouristVoucherErrorHandler.logger;
 
 public class TouristVoucherHandler extends DefaultHandler {
     private Set<TouristVoucher> touristVouchers;
@@ -22,40 +25,43 @@ public class TouristVoucherHandler extends DefaultHandler {
     private TouristVoucherType currentXmlTag;
     private EnumSet<TouristVoucherType> withText;
     private static final String ELEMENT_VOUCHER = "tourist-voucher";
-    private static final String ELEMENT_HOTEL_CHARACTERISTIC = "hotel-characteristic";
     public TouristVoucherHandler() {
         touristVouchers = new HashSet<>();
-        withText = EnumSet.range(TouristVoucherType.VOUCHER_NUMBER, TouristVoucherType.ROOMS);
+        withText = EnumSet.range(TouristVoucherType.VOUCHER_NUMBER, TouristVoucherType.CITY);
     }
     public Set<TouristVoucher> getTouristVouchers() {
         return touristVouchers;
     }
     public void startElement(String uri, String localName, String qName, Attributes attrs) {
-        if (ELEMENT_VOUCHER.equals(qName)) {
-            current = new TouristVoucher();
-            if(attrs.getLength() == 2) {
-                if(Objects.equals(attrs.getQName(0), TouristVoucherType.TRANSPORT)) {
-                    current.setTransport(attrs.getValue(0));
-                    current.setType(attrs.getValue(1));
-                } else {
-                    current.setTransport(attrs.getValue(1));
-                    current.setType(attrs.getValue(0));
-                }
+        TouristVoucherType type = TouristVoucherType.valueOf(qName.toUpperCase().replace('-','_'));
+        switch (type) {
+            case REST_VOUCHER -> {
+                current = new RestVoucher();
+                current.setTransport(attrs.getValue(0));
             }
-        } else {
-            if (ELEMENT_HOTEL_CHARACTERISTIC.equals(qName)) {
+            case SIGHTSEEING_VOUCHER -> {
+                current = new SightseeingVoucher();
+                current.setTransport(attrs.getValue(0));
+            }
+            case WEEKEND_VOUCHER -> {
+                current = new WeekendVoucher();
+                current.setTransport(attrs.getValue(0));
+            }
+            case HOTEL_CHARACTERISTIC -> {
                 HotelCharacteristic hotelCharacteristic = current.getHotelCharacteristic();
                 String foodType = attrs.getValue(0);
                 hotelCharacteristic.setFoodType(Objects.requireNonNullElse(foodType, "HB"));
             }
-            TouristVoucherType temp = TouristVoucherType.valueOf(qName.toUpperCase().replace('-','_'));
-            if (withText.contains(temp)) {
-                currentXmlTag = temp;
-            }
+        }
+        TouristVoucherType temp = TouristVoucherType.valueOf(qName.toUpperCase().replace('-','_'));
+        if (withText.contains(temp)) {
+            currentXmlTag = temp;
         }
     }
     public void endElement(String uri, String localName, String qName) {
-        if (ELEMENT_VOUCHER.equals(qName)) {
+        TouristVoucherType tag = TouristVoucherType.valueOf(qName.toUpperCase().replace('-','_'));
+        if (tag.equals(TouristVoucherType.REST_VOUCHER) || tag.equals(TouristVoucherType.SIGHTSEEING_VOUCHER)
+                || tag.equals(TouristVoucherType.WEEKEND_VOUCHER)) {
             touristVouchers.add(current);
         }
     }
@@ -78,10 +84,21 @@ public class TouristVoucherHandler extends DefaultHandler {
                 case COST -> current.setCost(Integer.parseInt(data));
                 case STARS -> hotelCharacteristic.setStars(Integer.parseInt(data));
                 case ROOMS -> hotelCharacteristic.setRooms(Integer.parseInt(data));
+                case CITY -> ((RestVoucher)current).setCity(data);
+                case NUMBER_OF_PLACES -> ((SightseeingVoucher)current).setNumberOfPlaces(Integer.parseInt(data));
+                case NUMBER_OF_NIGHTS -> ((WeekendVoucher)current).setNumberOfNights(Integer.parseInt(data));
                 default -> throw new EnumConstantNotPresentException(
                         currentXmlTag.getDeclaringClass(), currentXmlTag.name());
             }
         }
         currentXmlTag = null;
     }
+
+    /*
+    public static void main(String[] args) {
+        TouristVouchersSaxBuilder saxBuilder = new TouristVouchersSaxBuilder();
+        saxBuilder.buildSetTouristVouchers("files/TouristVouchers.xml");
+        System.out.println(saxBuilder.getTouristVouchers());
+    }
+    */
 }

@@ -1,8 +1,8 @@
 package com.company.xml_parsing.builder;
 
-import com.company.xml_parsing.entity.HotelCharacteristic;
-import com.company.xml_parsing.entity.TouristVoucher;
+import com.company.xml_parsing.entity.*;
 import com.company.xml_parsing.exception.ParserException;
+import com.company.xml_parsing.handler.TouristVoucherType;
 import com.company.xml_parsing.parsing.LocalDateParsing;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,10 +18,9 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.company.xml_parsing.validation.TouristVoucherErrorHandler.logger;
+import static com.company.xml_parsing.handler.TouristVoucherErrorHandler.logger;
 
-public class TouristVouchersDomBuilder {
-    private Set<TouristVoucher> touristVouchers;
+public class TouristVouchersDomBuilder extends AbstractTouristVouchersBuilder {
     private DocumentBuilder docBuilder;
     public TouristVouchersDomBuilder() {
         touristVouchers = new HashSet<>();
@@ -29,9 +28,10 @@ public class TouristVouchersDomBuilder {
         try {
             docBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            logger.error(e);
+            logger.error("Parser configuration exception", e);
         }
     }
+    @Override
     public Set<TouristVoucher> getTouristVouchers() {
         return touristVouchers;
     }
@@ -40,45 +40,87 @@ public class TouristVouchersDomBuilder {
         try {
             doc = docBuilder.parse(filename);
             Element root = doc.getDocumentElement();
-            NodeList touristVouchersList = root.getElementsByTagName("tourist-voucher");
-            for (int i = 0; i < touristVouchersList.getLength(); i++) {
-                Element touristVouchersElement = (Element)touristVouchersList.item(i);
-                TouristVoucher touristVoucher = buildSetTouristVouchers(touristVouchersElement);
-                touristVouchers.add(touristVoucher);
-            }
-        } catch (IOException | SAXException | ParserException e) {
-            logger.error(e);
+            fillTouristVouchersSet(root, TouristVoucherType.REST_VOUCHER);
+            fillTouristVouchersSet(root, TouristVoucherType.SIGHTSEEING_VOUCHER);
+            fillTouristVouchersSet(root, TouristVoucherType.WEEKEND_VOUCHER);
+        } catch (IOException e) {
+            logger.error("I/O exception in " + filename, e);
+        } catch (SAXException e) {
+            logger.error("SAX parser exception in " + filename, e);
+        } catch (ParserException e) {
+            logger.error("Own exception: ", e);
         }
     }
-    private TouristVoucher buildSetTouristVouchers(Element touristVoucherElement) throws ParserException {
-        TouristVoucher touristVoucher = new TouristVoucher();
-        touristVoucher.setType(touristVoucherElement.getAttribute("type"));
-        touristVoucher.setTransport(touristVoucherElement.getAttribute("transport"));
-        touristVoucher.setVoucherNumber(getElementTextContent(touristVoucherElement, "voucher-number"));
-        touristVoucher.setCountry(getElementTextContent(touristVoucherElement, "country"));
-        int numberOfDays = Integer
-                .parseInt(getElementTextContent(touristVoucherElement, "number-of-days"));
+    private void fillTouristVouchersSet(Element root, TouristVoucherType type) throws ParserException {
+        String value = type.getValue();
+        NodeList touristVouchersList = root.getElementsByTagName(value);
+        for (int i = 0; i < touristVouchersList.getLength(); i++) {
+            Element touristVoucherElement = (Element)touristVouchersList.item(i);
+            TouristVoucher touristVoucher = buildTouristVouchers(touristVoucherElement, type);
+            touristVouchers.add(touristVoucher);
+        }
+    }
+    private TouristVoucher buildTouristVouchers(Element touristVoucherElement,
+                                                   TouristVoucherType type) throws ParserException {
+        TouristVoucher touristVoucher;
+        switch (type) {
+            case REST_VOUCHER -> touristVoucher = new RestVoucher();
+            case SIGHTSEEING_VOUCHER -> touristVoucher = new SightseeingVoucher();
+            case WEEKEND_VOUCHER -> touristVoucher = new WeekendVoucher();
+            default -> throw new ParserException("Unexpected value: " + type);
+        }
+        touristVoucher.setTransport(touristVoucherElement.getAttribute(TouristVoucherType.TRANSPORT.getValue()));
+        touristVoucher.setVoucherNumber(getElementTextContent(touristVoucherElement,
+                                                              TouristVoucherType.VOUCHER_NUMBER.getValue()));
+        touristVoucher.setCountry(getElementTextContent(touristVoucherElement,
+                                                        TouristVoucherType.COUNTRY.getValue()));
+        int numberOfDays = Integer.parseInt(getElementTextContent(touristVoucherElement,
+                                                                  TouristVoucherType.NUMBER_OF_DAYS.getValue()));
         touristVoucher.setNumberOfDays(numberOfDays);
-        LocalDate date = LocalDateParsing
-                .convertStringToLocalDate(getElementTextContent(touristVoucherElement, "start-date"));
+        LocalDate date;
+        try {
+            date = LocalDateParsing.convertStringToLocalDate(getElementTextContent(touristVoucherElement,
+                                                                            TouristVoucherType.START_DATE.getValue()));
+        } catch (ParserException e) {
+            logger.info("Incorrect date. Setting current date as a start date");
+            date = LocalDate.now();
+        }
         touristVoucher.setStartDate(date);
-        int cost = Integer
-                .parseInt(getElementTextContent(touristVoucherElement, "cost"));
+        int cost = Integer.parseInt(getElementTextContent(touristVoucherElement,
+                                                          TouristVoucherType.COST.getValue()));
         touristVoucher.setCost(cost);
         HotelCharacteristic hotelCharacteristic = touristVoucher.getHotelCharacteristic();
-        Element hotelCharacteristicElement =
-                (Element)touristVoucherElement.getElementsByTagName("hotel-characteristic").item(0);
-        String foodType = hotelCharacteristicElement.getAttribute("food-type");
+        Element hotelCharacteristicElement = (Element)touristVoucherElement
+                                             .getElementsByTagName(TouristVoucherType.HOTEL_CHARACTERISTIC.getValue())
+                                             .item(0);
+        String foodType = hotelCharacteristicElement.getAttribute(TouristVoucherType.FOOD_TYPE.getValue());
         if(foodType.equals("")) {
             foodType = "HB";
         }
         hotelCharacteristic.setFoodType(foodType);
-        int stars = Integer
-                .parseInt(getElementTextContent(hotelCharacteristicElement, "stars"));
+        int stars = Integer.parseInt(getElementTextContent(hotelCharacteristicElement,
+                                                           TouristVoucherType.STARS.getValue()));
         hotelCharacteristic.setStars(stars);
-        int rooms = Integer
-                .parseInt(getElementTextContent(hotelCharacteristicElement, "rooms"));
+        int rooms = Integer.parseInt(getElementTextContent(hotelCharacteristicElement,
+                                                           TouristVoucherType.ROOMS.getValue()));
         hotelCharacteristic.setRooms(rooms);
+        switch (type) {
+            case REST_VOUCHER -> ((RestVoucher)touristVoucher)
+                    .setCity(getElementTextContent(touristVoucherElement, TouristVoucherType.CITY.getValue()));
+            case SIGHTSEEING_VOUCHER -> {
+                int numberOfPlaces = Integer
+                                     .parseInt(getElementTextContent(touristVoucherElement,
+                                              TouristVoucherType.NUMBER_OF_PLACES.getValue()));
+                ((SightseeingVoucher)touristVoucher).setNumberOfPlaces(numberOfPlaces);
+            }
+            case WEEKEND_VOUCHER -> {
+                int numberOfNights = Integer
+                                     .parseInt(getElementTextContent(touristVoucherElement,
+                                              TouristVoucherType.NUMBER_OF_NIGHTS.getValue()));
+                ((WeekendVoucher)touristVoucher).setNumberOfNights(numberOfNights);
+            }
+            default -> throw new ParserException("Unexpected value: " + type);
+        }
         return touristVoucher;
     }
     private static String getElementTextContent(Element element, String elementName) {
@@ -87,9 +129,11 @@ public class TouristVouchersDomBuilder {
         return node.getTextContent();
     }
 
+    /*
     public static void main(String[] args) {
         TouristVouchersDomBuilder domBuilder = new TouristVouchersDomBuilder();
         domBuilder.buildSetTouristVouchers("files/TouristVouchers.xml");
         System.out.println(domBuilder.getTouristVouchers());
     }
+     */
 }

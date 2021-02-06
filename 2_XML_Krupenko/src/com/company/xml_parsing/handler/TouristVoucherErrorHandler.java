@@ -1,4 +1,4 @@
-package com.company.xml_parsing.validation;
+package com.company.xml_parsing.handler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

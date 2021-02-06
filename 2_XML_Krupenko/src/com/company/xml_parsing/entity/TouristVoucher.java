@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class TouristVoucher {
     private String transport;
-    private String type;
     private String voucherNumber;
     private String country;
     private int numberOfDays;
@@ -16,10 +15,9 @@ public class TouristVoucher {
         hotelCharacteristic = new HotelCharacteristic();
     }
 
-    public TouristVoucher(String transport, String type, String voucherNumber, String country, int numberOfDays,
+    public TouristVoucher(String transport, String voucherNumber, String country, int numberOfDays,
                           LocalDate startDate, int cost, HotelCharacteristic hotelCharacteristic) {
         this.transport = transport;
-        this.type = type;
         this.voucherNumber = voucherNumber;
         this.country = country;
         this.numberOfDays = numberOfDays;
@@ -34,14 +32,6 @@ public class TouristVoucher {
 
     public void setTransport(String transport) {
         this.transport = transport;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getVoucherNumber() {
@@ -97,7 +87,6 @@ public class TouristVoucher {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((transport != null) ? transport.hashCode() : 0);
-        result = prime * result + ((type != null) ? type.hashCode() : 0);
         result = prime * result + ((voucherNumber != null) ? voucherNumber.hashCode() : 0);
         result = prime * result + ((country != null) ? country.hashCode() : 0);
         result = prime * result + numberOfDays;
@@ -124,13 +113,6 @@ public class TouristVoucher {
                 return false;
             }
         } else if (!transport.equals(other.transport)) {
-            return false;
-        }
-        if (type == null) {
-            if (other.type != null) {
-                return false;
-            }
-        } else if (!type.equals(other.type)) {
             return false;
         }
         if (voucherNumber == null) {
@@ -174,7 +156,6 @@ public class TouristVoucher {
     public String toString() {
         final StringBuilder sb = new StringBuilder("\nvoucher ");
         sb.append(voucherNumber).append(":");
-        sb.append("\ntype -- ").append(type);
         sb.append("\ncountry -- ").append(country);
         sb.append("\ntransport -- ").append(transport);
         sb.append("\nstart date -- ").append(startDate);

@@ -2,13 +2,17 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
         targetNamespace="./TouristVouchers"
         xmlns:tns="./TouristVouchers"
-        elementFormDefault="unqualified">
+        elementFormDefault="qualified">
+
+    <element name="tourist-voucher" type="tns:TouristVoucher" abstract="true"></element>
+    <element name="rest-voucher" type="tns:RestVoucher" substitutionGroup="tns:tourist-voucher"></element>
+    <element name="sightseeing-voucher" type="tns:SightseeingVoucher" substitutionGroup="tns:tourist-voucher"></element>
+    <element name="weekend-voucher" type="tns:WeekendVoucher" substitutionGroup="tns:tourist-voucher"></element>
 
     <element name="TouristVouchers">
         <complexType>
             <sequence>
-                <element name="tourist-voucher" type="tns:TouristVoucher"
-                         minOccurs="16" maxOccurs="unbounded" />
+                <element ref="tns:tourist-voucher" minOccurs="16" />
             </sequence>
         </complexType>
     </element>
@@ -17,11 +21,10 @@
         <sequence>
             <element name="voucher-number" type="tns:NumberVoucher" />
             <element name="country" type="string" />
-            <element name="number-of-days" type="positiveInteger" minOccurs="2" />
+            <element name="number-of-days" type="positiveInteger" />
             <element name="start-date" type="date" />
-            <element name="cost" type="positiveInteger" minOccurs="100" />
-            <element name="hotel-characteristic"
-                     type="tns:HotelCharacteristic" />
+            <element name="cost" type="tns:Cost" />
+            <element name="hotel-characteristic" type="tns:HotelCharacteristic" />
         </sequence>
         <attribute name="transport" use="required">
             <simpleType>
@@ -33,21 +36,41 @@
                 </restriction>
             </simpleType>
         </attribute>
-        <attribute name="type" use="required">
-            <simpleType>
-                <restriction base="string">
-                    <enumeration value="weekend"></enumeration>
-                    <enumeration value="sightseeing"></enumeration>
-                    <enumeration value="rest"></enumeration>
-                    <enumeration value="pilgrimage"></enumeration>
-                </restriction>
-            </simpleType>
-        </attribute>
+    </complexType>
+
+    <complexType name="RestVoucher">
+        <complexContent>
+            <extension base="tns:TouristVoucher">
+                <sequence>
+                    <element name="city" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SightseeingVoucher">
+        <complexContent>
+            <extension base="tns:TouristVoucher">
+                <sequence>
+                    <element name="number-of-places" type="positiveInteger" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="WeekendVoucher">
+        <complexContent>
+            <extension base="tns:TouristVoucher">
+                <sequence>
+                    <element name="number-of-nights" type="positiveInteger" />
+                </sequence>
+            </extension>
+        </complexContent>
     </complexType>
 
     <simpleType name="NumberVoucher">
         <restriction base="ID">
-            <pattern value="([A-Z]){3}([0-9]){10}" />
+            <pattern value="([A-Z]){3}([\d]){10}" />
         </restriction>
     </simpleType>
 
@@ -70,6 +93,13 @@
         </attribute>
     </complexType>
 
+    <simpleType name="Cost">
+        <restriction base="positiveInteger">
+            <minInclusive value="100" />
+            <maxInclusive value="100000" />
+        </restriction>
+    </simpleType>
+
     <simpleType name="Stars">
         <restriction base="positiveInteger">
             <minInclusive value="1" />
@@ -80,7 +110,7 @@
     <simpleType name="Rooms">
         <restriction base="positiveInteger">
             <minInclusive value="1" />
-            <maxInclusive value="4" />
+            <maxInclusive value="5" />
         </restriction>
     </simpleType>
 
