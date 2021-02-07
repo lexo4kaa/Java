@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Tourist-Vouchers xmlns:tns="./TouristVouchers"
+<TouristVouchers xmlns="./TouristVouchers"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="./TouristVouchers TouristVouchers.xsd ">
 
@@ -7,32 +7,31 @@
         <voucher-number>SWE0000000001</voucher-number>
         <country>Sweden</country>
         <number-of-days>3</number-of-days>
-        <number-of-nights>3</number-of-nights>
         <start-date>2021-03-03</start-date>
         <cost>500</cost>
         <hotel-characteristic food-type="OB">
             <stars>4</stars>
             <rooms>2</rooms>
         </hotel-characteristic>
+        <number-of-nights>3</number-of-nights>
     </weekend-voucher>
 
     <sightseeing-voucher transport="air">
         <voucher-number>CHI0000000001</voucher-number>
         <country>China</country>
         <number-of-days>5</number-of-days>
-        <number-of-places>7</number-of-places>
         <start-date>2022-06-15</start-date>
         <cost>1000</cost>
         <hotel-characteristic>
             <stars>4</stars>
             <rooms>2</rooms>
         </hotel-characteristic>
+        <number-of-places>7</number-of-places>
     </sightseeing-voucher>
 
-    <rest-voucher transport = "auto">
+    <rest-voucher transport="auto">
         <voucher-number>SPA0000000001</voucher-number>
         <country>Spain</country>
-        <city>Madrid</city>>
         <number-of-days>14</number-of-days>
         <start-date>2021-09-04</start-date>
         <cost>2500</cost>
@@ -40,8 +39,175 @@
             <stars>4</stars>
             <rooms>1</rooms>
         </hotel-characteristic>
+        <city>Madrid</city>
     </rest-voucher>
 
+    <weekend-voucher transport="ferry">
+        <voucher-number>SWE0000000002</voucher-number>
+        <country>Sweden</country>
+        <number-of-days>2</number-of-days>
+        <start-date>2021-07-22</start-date>
+        <cost>300</cost>
+        <hotel-characteristic>
+            <stars>4</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+        <number-of-nights>1</number-of-nights>
+    </weekend-voucher>
 
+    <sightseeing-voucher transport="auto">
+        <voucher-number>RUS0000000001</voucher-number>
+        <country>Russia</country>
+        <number-of-days>4</number-of-days>
+        <start-date>2021-10-25</start-date>
+        <cost>750</cost>
+        <hotel-characteristic>
+            <stars>4</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+        <number-of-places>10</number-of-places>
+    </sightseeing-voucher>
 
-</Tourist-Vouchers>
+    <rest-voucher transport="air">
+        <voucher-number>EGY0000000001</voucher-number>
+        <country>Egypt</country>
+        <number-of-days>30</number-of-days>
+        <start-date>2021-07-01</start-date>
+        <cost>7500</cost>
+        <hotel-characteristic food-type="UAI">
+            <stars>5</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+        <city>Cairo</city>
+    </rest-voucher>
+
+    <weekend-voucher transport="ferry">
+        <voucher-number>SWE0000000003</voucher-number>
+        <country>Sweden</country>
+        <number-of-days>2</number-of-days>
+        <start-date>2021-12-12</start-date>
+        <cost>300</cost>
+        <hotel-characteristic>
+            <stars>4</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+        <number-of-nights>1</number-of-nights>
+    </weekend-voucher>
+
+    <sightseeing-voucher transport="railway">
+        <voucher-number>RUS0000000002</voucher-number>
+        <country>Russia</country>
+        <number-of-days>7</number-of-days>
+        <start-date>2021-08-08</start-date>
+        <cost>1000</cost>
+        <hotel-characteristic>
+            <stars>3</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+        <number-of-places>15</number-of-places>
+    </sightseeing-voucher>
+
+    <rest-voucher transport = "air">
+        <voucher-number>EGY0000000002</voucher-number>
+        <country>Egypt</country>
+        <number-of-days>10</number-of-days>
+        <start-date>2021-03-03</start-date>
+        <cost>2500</cost>
+        <hotel-characteristic food-type="AI">
+            <stars>4</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+        <city>Cairo</city>
+    </rest-voucher>
+
+    <weekend-voucher transport="ferry">
+        <voucher-number>SWE0000000004</voucher-number>
+        <country>Sweden</country>
+        <number-of-days>2</number-of-days>
+        <start-date>2021-11-02</start-date>
+        <cost>400</cost>
+        <hotel-characteristic>
+            <stars>3</stars>
+            <rooms>3</rooms>
+        </hotel-characteristic>
+        <number-of-nights>2</number-of-nights>
+    </weekend-voucher>
+
+    <sightseeing-voucher transport="auto">
+        <voucher-number>POL0000000001</voucher-number>
+        <country>Poland</country>
+        <number-of-days>4</number-of-days>
+        <start-date>2021-05-25</start-date>
+        <cost>660</cost>
+        <hotel-characteristic>
+            <stars>3</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+        <number-of-places>5</number-of-places>
+    </sightseeing-voucher>
+
+    <rest-voucher transport="air">
+        <voucher-number>ITA0000000001</voucher-number>
+        <country>Italy</country>
+        <number-of-days>7</number-of-days>
+        <start-date>2021-03-03</start-date>
+        <cost>1500</cost>
+        <hotel-characteristic food-type="AI">
+            <stars>4</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+        <city>Rome</city>
+    </rest-voucher>
+
+    <weekend-voucher transport="ferry">
+        <voucher-number>FIN0000000001</voucher-number>
+        <country>Finland</country>
+        <number-of-days>1</number-of-days>
+        <start-date>2021-04-15</start-date>
+        <cost>200</cost>
+        <hotel-characteristic>
+            <stars>3</stars>
+            <rooms>1</rooms>
+        </hotel-characteristic>
+        <number-of-nights>2</number-of-nights>
+    </weekend-voucher>
+
+    <sightseeing-voucher transport="auto">
+        <voucher-number>POL0000000002</voucher-number>
+        <country>Poland</country>
+        <number-of-days>3</number-of-days>
+        <start-date>2021-06-05</start-date>
+        <cost>770</cost>
+        <hotel-characteristic>
+            <stars>4</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+        <number-of-places>7</number-of-places>
+    </sightseeing-voucher>
+
+    <rest-voucher transport="air">
+        <voucher-number>ITA0000000002</voucher-number>
+        <country>Italy</country>
+        <number-of-days>7</number-of-days>
+        <start-date>2021-09-13</start-date>
+        <cost>1300</cost>
+        <hotel-characteristic food-type="FB">
+            <stars>4</stars>
+            <rooms>2</rooms>
+        </hotel-characteristic>
+        <city>Rome</city>
+    </rest-voucher>
+
+    <rest-voucher transport="railway">
+        <voucher-number>UKR0000000001</voucher-number>
+        <country>Ukraine</country>
+        <number-of-days>10</number-of-days>
+        <start-date>2021-07-15</start-date>
+        <cost>1111</cost>
+        <hotel-characteristic food-type="BB">
+            <stars>3</stars>
+            <rooms>4</rooms>
+        </hotel-characteristic>
+        <city>Kiev</city>
+    </rest-voucher>
+</TouristVouchers>

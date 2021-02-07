@@ -1,8 +1,10 @@
 package com.company.xml_parsing.builder;
 
-import com.company.xml_parsing.entity.*;
-import com.company.xml_parsing.exception.ParserException;
-import com.company.xml_parsing.parsing.LocalDateParsing;
+import com.company.xml_parsing.entity.HotelCharacteristic;
+import com.company.xml_parsing.entity.RestVoucher;
+import com.company.xml_parsing.entity.SightseeingVoucher;
+import com.company.xml_parsing.entity.TouristVoucher;
+import com.company.xml_parsing.entity.WeekendVoucher;
 import com.company.xml_parsing.handler.TouristVoucherType;
 
 import javax.xml.stream.XMLInputFactory;
@@ -77,15 +79,7 @@ public class TouristVouchersStaxBuilder extends AbstractTouristVouchersBuilder {
                         case COUNTRY -> touristVoucher.setCountry(getXMLText(reader));
                         case NUMBER_OF_DAYS ->
                                 touristVoucher.setNumberOfDays(Integer.parseInt(getXMLText(reader)));
-                        case START_DATE -> {
-                            try {
-                                touristVoucher.setStartDate(LocalDateParsing.
-                                        convertStringToLocalDate(getXMLText(reader)));
-                            } catch (ParserException e) {
-                                logger.info("Incorrect date. Setting current date as a start date");
-                                touristVoucher.setStartDate(LocalDate.now());
-                            }
-                        }
+                        case START_DATE -> touristVoucher.setStartDate(LocalDate.parse(getXMLText(reader)));
                         case COST -> touristVoucher.setCost(Integer.parseInt(getXMLText(reader)));
                         case HOTEL_CHARACTERISTIC ->
                                 touristVoucher.setHotelCharacteristic(getXMLHotelCharacteristic(reader));
@@ -147,12 +141,4 @@ public class TouristVouchersStaxBuilder extends AbstractTouristVouchersBuilder {
         }
         return text;
     }
-
-    /*
-    public static void main(String[] args) {
-        TouristVouchersStaxBuilder staxBuilder = new TouristVouchersStaxBuilder();
-        staxBuilder.buildSetTouristVouchers("files/TouristVouchers.xml");
-        System.out.println(staxBuilder.getTouristVouchers());
-    }
-    */
 }

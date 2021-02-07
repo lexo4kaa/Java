@@ -1,9 +1,12 @@
 package com.company.xml_parsing.builder;
 
-import com.company.xml_parsing.entity.*;
+import com.company.xml_parsing.entity.HotelCharacteristic;
+import com.company.xml_parsing.entity.RestVoucher;
+import com.company.xml_parsing.entity.SightseeingVoucher;
+import com.company.xml_parsing.entity.TouristVoucher;
+import com.company.xml_parsing.entity.WeekendVoucher;
 import com.company.xml_parsing.exception.ParserException;
 import com.company.xml_parsing.handler.TouristVoucherType;
-import com.company.xml_parsing.parsing.LocalDateParsing;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -48,7 +51,7 @@ public class TouristVouchersDomBuilder extends AbstractTouristVouchersBuilder {
         } catch (SAXException e) {
             logger.error("SAX parser exception in " + filename, e);
         } catch (ParserException e) {
-            logger.error("Own exception: ", e);
+            logger.error("Parser exception in " + filename, e);
         }
     }
     private void fillTouristVouchersSet(Element root, TouristVoucherType type) throws ParserException {
@@ -60,8 +63,7 @@ public class TouristVouchersDomBuilder extends AbstractTouristVouchersBuilder {
             touristVouchers.add(touristVoucher);
         }
     }
-    private TouristVoucher buildTouristVouchers(Element touristVoucherElement,
-                                                   TouristVoucherType type) throws ParserException {
+    private TouristVoucher buildTouristVouchers(Element touristVoucherElement, TouristVoucherType type) throws ParserException {
         TouristVoucher touristVoucher;
         switch (type) {
             case REST_VOUCHER -> touristVoucher = new RestVoucher();
@@ -77,14 +79,8 @@ public class TouristVouchersDomBuilder extends AbstractTouristVouchersBuilder {
         int numberOfDays = Integer.parseInt(getElementTextContent(touristVoucherElement,
                                                                   TouristVoucherType.NUMBER_OF_DAYS.getValue()));
         touristVoucher.setNumberOfDays(numberOfDays);
-        LocalDate date;
-        try {
-            date = LocalDateParsing.convertStringToLocalDate(getElementTextContent(touristVoucherElement,
-                                                                            TouristVoucherType.START_DATE.getValue()));
-        } catch (ParserException e) {
-            logger.info("Incorrect date. Setting current date as a start date");
-            date = LocalDate.now();
-        }
+        LocalDate date = LocalDate.parse(getElementTextContent(touristVoucherElement,
+                                                               TouristVoucherType.START_DATE.getValue()));
         touristVoucher.setStartDate(date);
         int cost = Integer.parseInt(getElementTextContent(touristVoucherElement,
                                                           TouristVoucherType.COST.getValue()));
@@ -128,12 +124,4 @@ public class TouristVouchersDomBuilder extends AbstractTouristVouchersBuilder {
         Node node = nList.item(0);
         return node.getTextContent();
     }
-
-    /*
-    public static void main(String[] args) {
-        TouristVouchersDomBuilder domBuilder = new TouristVouchersDomBuilder();
-        domBuilder.buildSetTouristVouchers("files/TouristVouchers.xml");
-        System.out.println(domBuilder.getTouristVouchers());
-    }
-     */
 }

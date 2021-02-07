@@ -1,7 +1,6 @@
 package com.company.xml_parsing.builder;
 
 import com.company.xml_parsing.entity.TouristVoucher;
-import com.company.xml_parsing.exception.ParserException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,5 +21,5 @@ public abstract class AbstractTouristVouchersBuilder {
         return touristVouchers;
     }
 
-    abstract public void buildSetTouristVouchers(String fileName) throws ParserException;
+    abstract public void buildSetTouristVouchers(String fileName);
 }

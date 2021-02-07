@@ -2,7 +2,7 @@ package com.company.xml_parsing.handler;
 
 public enum TouristVoucherType {
 
-    TOURIST_VOUCHERS("TouristVouchers"),
+    TOURISTVOUCHERS("TouristVouchers"),
     TOURIST_VOUCHER("tourist-voucher"),
     REST_VOUCHER("rest-voucher"),
     SIGHTSEEING_VOUCHER("sightseeing-voucher"),

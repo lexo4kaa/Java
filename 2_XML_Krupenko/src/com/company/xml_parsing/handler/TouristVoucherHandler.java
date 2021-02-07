@@ -6,8 +6,6 @@ import com.company.xml_parsing.entity.RestVoucher;
 import com.company.xml_parsing.entity.SightseeingVoucher;
 import com.company.xml_parsing.entity.WeekendVoucher;
 import com.company.xml_parsing.entity.HotelCharacteristic;
-import com.company.xml_parsing.exception.ParserException;
-import com.company.xml_parsing.parsing.LocalDateParsing;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -16,8 +14,6 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import static com.company.xml_parsing.handler.TouristVoucherErrorHandler.logger;
 
 public class TouristVoucherHandler extends DefaultHandler {
     private Set<TouristVoucher> touristVouchers;
@@ -73,14 +69,7 @@ public class TouristVoucherHandler extends DefaultHandler {
                 case VOUCHER_NUMBER -> current.setVoucherNumber(data);
                 case COUNTRY -> current.setCountry(data);
                 case NUMBER_OF_DAYS -> current.setNumberOfDays(Integer.parseInt(data));
-                case START_DATE -> {
-                    try {
-                        current.setStartDate(LocalDateParsing.convertStringToLocalDate(data));
-                    } catch (ParserException e) {
-                        logger.info("Incorrect date. Setting current date as a start date");
-                        current.setStartDate(LocalDate.now());
-                    }
-                }
+                case START_DATE -> current.setStartDate(LocalDate.parse(data));
                 case COST -> current.setCost(Integer.parseInt(data));
                 case STARS -> hotelCharacteristic.setStars(Integer.parseInt(data));
                 case ROOMS -> hotelCharacteristic.setRooms(Integer.parseInt(data));
@@ -93,12 +82,9 @@ public class TouristVoucherHandler extends DefaultHandler {
         }
         currentXmlTag = null;
     }
-
-    /*
     public static void main(String[] args) {
         TouristVouchersSaxBuilder saxBuilder = new TouristVouchersSaxBuilder();
         saxBuilder.buildSetTouristVouchers("files/TouristVouchers.xml");
         System.out.println(saxBuilder.getTouristVouchers());
     }
-    */
 }

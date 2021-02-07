@@ -4,7 +4,6 @@ import com.company.xml_parsing.builder.AbstractTouristVouchersBuilder;
 import com.company.xml_parsing.builder.TouristVouchersDomBuilder;
 import com.company.xml_parsing.builder.TouristVouchersSaxBuilder;
 import com.company.xml_parsing.builder.TouristVouchersStaxBuilder;
-import com.company.xml_parsing.exception.ParserException;
 
 public class TouristVoucherBuilderFactory {
     private enum TypeParser {

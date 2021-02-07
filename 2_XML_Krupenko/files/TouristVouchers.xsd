@@ -4,15 +4,15 @@
         xmlns:tns="./TouristVouchers"
         elementFormDefault="qualified">
 
-    <element name="tourist-voucher" type="tns:TouristVoucher" abstract="true"></element>
-    <element name="rest-voucher" type="tns:RestVoucher" substitutionGroup="tns:tourist-voucher"></element>
-    <element name="sightseeing-voucher" type="tns:SightseeingVoucher" substitutionGroup="tns:tourist-voucher"></element>
-    <element name="weekend-voucher" type="tns:WeekendVoucher" substitutionGroup="tns:tourist-voucher"></element>
+    <element name="tourist-voucher" type="tns:TouristVoucher" abstract="true"/>
+    <element name="rest-voucher" type="tns:RestVoucher" substitutionGroup="tns:tourist-voucher"/>
+    <element name="sightseeing-voucher" type="tns:SightseeingVoucher" substitutionGroup="tns:tourist-voucher"/>
+    <element name="weekend-voucher" type="tns:WeekendVoucher" substitutionGroup="tns:tourist-voucher"/>
 
     <element name="TouristVouchers">
         <complexType>
             <sequence>
-                <element ref="tns:tourist-voucher" minOccurs="16" />
+                <element ref="tns:tourist-voucher" minOccurs="16" maxOccurs="unbounded"  />
             </sequence>
         </complexType>
     </element>
@@ -29,10 +29,10 @@
         <attribute name="transport" use="required">
             <simpleType>
                 <restriction base="string">
-                    <enumeration value="air"></enumeration>
-                    <enumeration value="railway"></enumeration>
-                    <enumeration value="auto"></enumeration>
-                    <enumeration value="ferry"></enumeration>
+                    <enumeration value="air"/>
+                    <enumeration value="railway"/>
+                    <enumeration value="auto"/>
+                    <enumeration value="ferry"/>
                 </restriction>
             </simpleType>
         </attribute>
@@ -82,12 +82,12 @@
         <attribute name="food-type" use="optional" default="HB">
             <simpleType>
                 <restriction base="string">
-                    <enumeration value="OB"></enumeration>
-                    <enumeration value="BB"></enumeration>
-                    <enumeration value="HB"></enumeration>
-                    <enumeration value="FB"></enumeration>
-                    <enumeration value="AI"></enumeration>
-                    <enumeration value="UAI"></enumeration>
+                    <enumeration value="OB"/>
+                    <enumeration value="BB"/>
+                    <enumeration value="HB"/>
+                    <enumeration value="FB"/>
+                    <enumeration value="AI"/>
+                    <enumeration value="UAI"/>
                 </restriction>
             </simpleType>
         </attribute>
@@ -113,5 +113,4 @@
             <maxInclusive value="5" />
         </restriction>
     </simpleType>
-
 </schema>
