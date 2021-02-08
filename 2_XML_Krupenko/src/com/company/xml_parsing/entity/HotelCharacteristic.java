@@ -44,19 +44,22 @@ public class HotelCharacteristic {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((foodType != null) ? foodType.hashCode() : 0);
-        result = prime * result + 13 * stars;
+        result = prime * result + stars;
         result = prime * result + rooms;
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         HotelCharacteristic other = (HotelCharacteristic) obj;
         if (foodType == null) {
             if (other.foodType != null) {

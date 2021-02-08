@@ -104,14 +104,12 @@ public class TouristVouchersDomBuilder extends AbstractTouristVouchersBuilder {
             case REST_VOUCHER -> ((RestVoucher)touristVoucher)
                     .setCity(getElementTextContent(touristVoucherElement, TouristVoucherType.CITY.getValue()));
             case SIGHTSEEING_VOUCHER -> {
-                int numberOfPlaces = Integer
-                                     .parseInt(getElementTextContent(touristVoucherElement,
+                int numberOfPlaces = Integer.parseInt(getElementTextContent(touristVoucherElement,
                                               TouristVoucherType.NUMBER_OF_PLACES.getValue()));
                 ((SightseeingVoucher)touristVoucher).setNumberOfPlaces(numberOfPlaces);
             }
             case WEEKEND_VOUCHER -> {
-                int numberOfNights = Integer
-                                     .parseInt(getElementTextContent(touristVoucherElement,
+                int numberOfNights = Integer.parseInt(getElementTextContent(touristVoucherElement,
                                               TouristVoucherType.NUMBER_OF_NIGHTS.getValue()));
                 ((WeekendVoucher)touristVoucher).setNumberOfNights(numberOfNights);
             }

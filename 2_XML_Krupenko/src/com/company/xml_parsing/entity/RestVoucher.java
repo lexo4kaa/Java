@@ -64,11 +64,4 @@ public class RestVoucher extends TouristVoucher {
         sb.append("\ntype -- rest");
         return sb.toString();
     }
-
-    public static void main(String[] args) {
-        RestVoucher voucher = new RestVoucher("air","QWE0123456789","Qwerty","Qaa",3,LocalDate.parse("2121-10-10"),300,new HotelCharacteristic("OB",3,4));
-        //TouristVoucher voucher = new TouristVoucher("air","QWE0123456789","Qwerty",3,LocalDate.parse("2121-10-10"),300,new HotelCharacteristic("OB",3,4));
-        System.out.println(voucher.hashCode());
-    }
-
 }

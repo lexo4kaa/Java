@@ -22,8 +22,7 @@ public class TouristVoucherBuilderFactory {
             case SAX -> {
                 return new TouristVouchersSaxBuilder();
             }
-            default -> throw new EnumConstantNotPresentException(
-                    type.getDeclaringClass(), type.name());
+            default -> throw new EnumConstantNotPresentException(type.getDeclaringClass(), type.name());
         }
     }
 }
