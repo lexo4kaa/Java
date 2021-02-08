@@ -1,6 +1,5 @@
 package com.company.xml_parsing.handler;
 
-import com.company.xml_parsing.builder.TouristVouchersSaxBuilder;
 import com.company.xml_parsing.entity.TouristVoucher;
 import com.company.xml_parsing.entity.RestVoucher;
 import com.company.xml_parsing.entity.SightseeingVoucher;
@@ -20,7 +19,6 @@ public class TouristVoucherHandler extends DefaultHandler {
     private TouristVoucher current;
     private TouristVoucherType currentXmlTag;
     private EnumSet<TouristVoucherType> withText;
-    private static final String ELEMENT_VOUCHER = "tourist-voucher";
     public TouristVoucherHandler() {
         touristVouchers = new HashSet<>();
         withText = EnumSet.range(TouristVoucherType.VOUCHER_NUMBER, TouristVoucherType.CITY);
@@ -81,10 +79,5 @@ public class TouristVoucherHandler extends DefaultHandler {
             }
         }
         currentXmlTag = null;
-    }
-    public static void main(String[] args) {
-        TouristVouchersSaxBuilder saxBuilder = new TouristVouchersSaxBuilder();
-        saxBuilder.buildSetTouristVouchers("files/TouristVouchers.xml");
-        System.out.println(saxBuilder.getTouristVouchers());
     }
 }

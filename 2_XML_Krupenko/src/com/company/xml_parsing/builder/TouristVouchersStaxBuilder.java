@@ -72,34 +72,30 @@ public class TouristVouchersStaxBuilder extends AbstractTouristVouchersBuilder {
         while (reader.hasNext()) {
             int next = reader.next();
             switch (next) {
-                case XMLStreamConstants.START_ELEMENT:
-                    name = reader.getLocalName().replace('-','_');
+                case XMLStreamConstants.START_ELEMENT -> {
+                    name = reader.getLocalName().replace('-', '_');
                     switch (TouristVoucherType.valueOf(name.toUpperCase())) {
                         case VOUCHER_NUMBER -> touristVoucher.setVoucherNumber(getXMLText(reader));
                         case COUNTRY -> touristVoucher.setCountry(getXMLText(reader));
-                        case NUMBER_OF_DAYS ->
-                                touristVoucher.setNumberOfDays(Integer.parseInt(getXMLText(reader)));
+                        case NUMBER_OF_DAYS -> touristVoucher.setNumberOfDays(Integer.parseInt(getXMLText(reader)));
                         case START_DATE -> touristVoucher.setStartDate(LocalDate.parse(getXMLText(reader)));
                         case COST -> touristVoucher.setCost(Integer.parseInt(getXMLText(reader)));
-                        case HOTEL_CHARACTERISTIC ->
-                                touristVoucher.setHotelCharacteristic(getXMLHotelCharacteristic(reader));
-
-                        case CITY -> ((RestVoucher)touristVoucher).setCity(getXMLText(reader));
-                        case NUMBER_OF_PLACES ->
-                                ((SightseeingVoucher)touristVoucher).setNumberOfPlaces(Integer
-                                                                                        .parseInt(getXMLText(reader)));
-                        case NUMBER_OF_NIGHTS ->
-                                ((WeekendVoucher)touristVoucher).setNumberOfNights(Integer
-                                                                                        .parseInt(getXMLText(reader)));
+                        case HOTEL_CHARACTERISTIC -> touristVoucher.setHotelCharacteristic(getXMLHotelCharacteristic(reader));
+                        case CITY -> ((RestVoucher) touristVoucher).setCity(getXMLText(reader));
+                        case NUMBER_OF_PLACES -> ((SightseeingVoucher) touristVoucher)
+                                                 .setNumberOfPlaces(Integer.parseInt(getXMLText(reader)));
+                        case NUMBER_OF_NIGHTS -> ((WeekendVoucher) touristVoucher)
+                                                 .setNumberOfNights(Integer.parseInt(getXMLText(reader)));
                     }
-                    break;
-                case XMLStreamConstants.END_ELEMENT:
-                    name = reader.getLocalName().replace('-','_');
+                }
+                case XMLStreamConstants.END_ELEMENT -> {
+                    name = reader.getLocalName().replace('-', '_');
                     if (TouristVoucherType.valueOf(name.toUpperCase()) == TouristVoucherType.REST_VOUCHER ||
                             TouristVoucherType.valueOf(name.toUpperCase()) == TouristVoucherType.SIGHTSEEING_VOUCHER ||
                             TouristVoucherType.valueOf(name.toUpperCase()) == TouristVoucherType.WEEKEND_VOUCHER) {
                         return touristVoucher;
                     }
+                }
             }
         }
         throw new XMLStreamException("Unknown element " + reader);
@@ -115,20 +111,19 @@ public class TouristVouchersStaxBuilder extends AbstractTouristVouchersBuilder {
         while (reader.hasNext()) {
             int next = reader.next();
             switch (next) {
-                case XMLStreamConstants.START_ELEMENT:
-                    name = reader.getLocalName().replace('-','_');
+                case XMLStreamConstants.START_ELEMENT -> {
+                    name = reader.getLocalName().replace('-', '_');
                     switch (TouristVoucherType.valueOf(name.toUpperCase())) {
-                        case ROOMS ->
-                                hotelCharacteristic.setRooms(Integer.parseInt(getXMLText(reader)));
-                        case STARS ->
-                                hotelCharacteristic.setStars(Integer.parseInt(getXMLText(reader)));
+                        case ROOMS -> hotelCharacteristic.setRooms(Integer.parseInt(getXMLText(reader)));
+                        case STARS -> hotelCharacteristic.setStars(Integer.parseInt(getXMLText(reader)));
                     }
-                    break;
-                case XMLStreamConstants.END_ELEMENT:
-                    name = reader.getLocalName().replace('-','_');
+                }
+                case XMLStreamConstants.END_ELEMENT -> {
+                    name = reader.getLocalName().replace('-', '_');
                     if (TouristVoucherType.valueOf(name.toUpperCase()) == TouristVoucherType.HOTEL_CHARACTERISTIC) {
                         return hotelCharacteristic;
                     }
+                }
             }
         }
         throw new XMLStreamException("Unknown element in tag <hotel-characteristic>");
