@@ -1,5 +1,6 @@
 package com.company.xml_parsing.handler;
 
+import com.company.xml_parsing.builder.TouristVouchersSaxBuilder;
 import com.company.xml_parsing.entity.TouristVoucher;
 import com.company.xml_parsing.entity.RestVoucher;
 import com.company.xml_parsing.entity.SightseeingVoucher;
@@ -11,7 +12,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.time.LocalDate;
 import java.util.EnumSet;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class TouristVoucherHandler extends DefaultHandler {
@@ -44,7 +44,11 @@ public class TouristVoucherHandler extends DefaultHandler {
             case HOTEL_CHARACTERISTIC -> {
                 HotelCharacteristic hotelCharacteristic = current.getHotelCharacteristic();
                 String foodType = attrs.getValue(0);
-                hotelCharacteristic.setFoodType(Objects.requireNonNullElse(foodType, "HB"));
+                if(foodType == null)
+                {
+                    foodType = "HB";
+                }
+                hotelCharacteristic.setFoodType(foodType);
             }
         }
         TouristVoucherType temp = TouristVoucherType.valueOf(qName.toUpperCase().replace('-','_'));
