@@ -6,7 +6,7 @@ import com.company.shapes.entity.Triangle;
 import java.util.List;
 
 public class TriangleProperty {
-    public boolean isRectangular(Triangle triangle) {
+    public static boolean isRectangular(Triangle triangle) {
         TriangleCalculation calculation = new TriangleCalculation();
         List<Point> points = triangle.getAllPoints();
         double a = calculation.distance(points.get(0), points.get(1));
@@ -20,7 +20,7 @@ public class TriangleProperty {
                 Math.abs(cosC) < Math.pow(10, -10);
     }
 
-    public boolean isAcute(Triangle triangle) {
+    public static boolean isAcute(Triangle triangle) {
         TriangleCalculation calculation = new TriangleCalculation();
         List<Point> points = triangle.getAllPoints();
         double a = calculation.distance(points.get(0), points.get(1));
@@ -32,7 +32,7 @@ public class TriangleProperty {
         return cosA > Math.pow(10, -10) && cosB > Math.pow(10, -10) && cosC > Math.pow(10, -10);
     }
 
-    public boolean isObtuse(Triangle triangle) {
+    public static boolean isObtuse(Triangle triangle) {
         TriangleCalculation calculation = new TriangleCalculation();
         List<Point> points = triangle.getAllPoints();
         double a = calculation.distance(points.get(0), points.get(1));
@@ -44,7 +44,7 @@ public class TriangleProperty {
         return cosA < -Math.pow(10, -10) || cosB < -Math.pow(10, -10) || cosC < -Math.pow(10, -10);
     }
 
-    public boolean isOsceles(Triangle triangle) {
+    public static boolean isOsceles(Triangle triangle) {
         TriangleCalculation calculation = new TriangleCalculation();
         List<Point> points = triangle.getAllPoints();
         double a = calculation.distance(points.get(0), points.get(1));
@@ -53,7 +53,7 @@ public class TriangleProperty {
         return ((a == b) && (a != c)) || ((a == c) && (a != b)) || ((b == c) && (a != c));
     }
 
-    public boolean isEquilateral(Triangle triangle) {
+    public static boolean isEquilateral(Triangle triangle) {
         TriangleCalculation calculation = new TriangleCalculation();
         List<Point> points = triangle.getAllPoints();
         double a = calculation.distance(points.get(0), points.get(1));
