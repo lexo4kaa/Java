@@ -1,14 +1,13 @@
-package com.company.shapes.parser;
+package com.company.shape.parser;
 
-import com.company.shapes.entity.Point;
-import com.company.shapes.entity.Triangle;
-import com.company.shapes.exception.ShapeException;
-import com.company.shapes.reader.TriangleReader;
+import com.company.shape.entity.Point;
+import com.company.shape.entity.Triangle;
+import com.company.shape.exception.ShapeException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.company.shapes.reader.TriangleReader.logger;
+import static com.company.shape.reader.TriangleReader.logger;
 
 public class TriangleParser {
     private final static int NUMBER_OF_POINTS = 6;

@@ -1,7 +1,7 @@
-package com.company.shapes.action;
+package com.company.shape.action;
 
-import com.company.shapes.entity.Point;
-import com.company.shapes.entity.Triangle;
+import com.company.shape.entity.Point;
+import com.company.shape.entity.Triangle;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class TriangleProperty {
         return cosA < -Math.pow(10, -10) || cosB < -Math.pow(10, -10) || cosC < -Math.pow(10, -10);
     }
 
-    public static boolean isOsceles(Triangle triangle) {
+    public static boolean isIsosceles(Triangle triangle) {
         TriangleCalculation calculation = new TriangleCalculation();
         List<Point> points = triangle.getAllPoints();
         double a = calculation.distance(points.get(0), points.get(1));

@@ -1,4 +1,4 @@
-package com.company.shapes.entity;
+package com.company.shape.entity;
 
 import java.util.UUID;
 

@@ -1,8 +1,8 @@
-package com.company.shapes.comparator;
+package com.company.shape.comparator;
 
-import com.company.shapes.action.TriangleCalculation;
-import com.company.shapes.entity.Shape;
-import com.company.shapes.entity.Triangle;
+import com.company.shape.action.TriangleCalculation;
+import com.company.shape.entity.Shape;
+import com.company.shape.entity.Triangle;
 
 import java.util.Comparator;
 

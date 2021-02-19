@@ -1,7 +1,7 @@
-package com.company.shapes.repository;
+package com.company.shape.repository;
 
-import com.company.shapes.entity.Shape;
-import com.company.shapes.exception.ShapeException;
+import com.company.shape.entity.Shape;
+import com.company.shape.exception.ShapeException;
 
 import java.util.ArrayList;
 import java.util.Comparator;

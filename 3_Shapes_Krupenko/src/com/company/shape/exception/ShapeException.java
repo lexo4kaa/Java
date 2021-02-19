@@ -1,4 +1,4 @@
-package com.company.shapes.exception;
+package com.company.shape.exception;
 
 public class ShapeException extends Exception {
     public ShapeException() {

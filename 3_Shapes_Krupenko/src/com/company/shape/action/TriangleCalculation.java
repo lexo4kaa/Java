@@ -1,7 +1,7 @@
-package com.company.shapes.action;
+package com.company.shape.action;
 
-import com.company.shapes.entity.Point;
-import com.company.shapes.entity.Triangle;
+import com.company.shape.entity.Point;
+import com.company.shape.entity.Triangle;
 
 public class TriangleCalculation {
     public double distance(Point point1, Point point2) {

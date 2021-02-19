@@ -1,4 +1,4 @@
-package com.company.shapes.entity;
+package com.company.shape.entity;
 
 public class Point {
     private double x;

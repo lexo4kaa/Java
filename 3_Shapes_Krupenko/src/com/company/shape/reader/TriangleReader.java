@@ -1,6 +1,6 @@
-package com.company.shapes.reader;
+package com.company.shape.reader;
 
-import com.company.shapes.exception.ShapeException;
+import com.company.shape.exception.ShapeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

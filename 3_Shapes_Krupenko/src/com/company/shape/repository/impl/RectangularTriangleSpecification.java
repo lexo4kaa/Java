@@ -1,9 +1,9 @@
-package com.company.shapes.repository.impl;
+package com.company.shape.repository.impl;
 
-import com.company.shapes.action.TriangleProperty;
-import com.company.shapes.entity.Shape;
-import com.company.shapes.entity.Triangle;
-import com.company.shapes.repository.Specification;
+import com.company.shape.action.TriangleProperty;
+import com.company.shape.entity.Shape;
+import com.company.shape.entity.Triangle;
+import com.company.shape.repository.Specification;
 
 public class RectangularTriangleSpecification implements Specification {
     @Override
