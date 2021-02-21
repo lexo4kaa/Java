@@ -2,7 +2,7 @@ package com.company.shape.entity;
 
 import java.util.UUID;
 
-public class Shape {
+public abstract class Shape {
     private String shapeId;
     private String name;
 

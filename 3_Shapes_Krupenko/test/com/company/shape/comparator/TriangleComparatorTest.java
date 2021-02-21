@@ -52,25 +52,25 @@ public class TriangleComparatorTest {
     public Object[] createDataX() {
         return new Object[][] { { shape1, shape2 , 0 },
                 { shape1, shape3, 1},
-                {shape2, shape3, 1} };
+                { shape2, shape3, 1} };
     }
     @DataProvider(name = "y")
     public Object[] createDataY() {
         return new Object[][] { { shape1, shape2 , 0 },
                 { shape1, shape3, -1},
-                {shape2, shape3, -1} };
+                { shape2, shape3, -1} };
     }
     @DataProvider(name = "perimeter")
     public Object[] createDataPerimeter() {
         return new Object[][] { { shape1, shape2 , 1 },
                 { shape1, shape3, -1},
-                {shape2, shape3, -1} };
+                { shape2, shape3, -1} };
     }
     @DataProvider(name = "square")
     public Object[] createDataSquare() {
         return new Object[][] { { shape1, shape2 , 1 },
                 { shape1, shape3, -1},
-                {shape2, shape3, -1} };
+                { shape2, shape3, -1} };
     }
     @DataProvider(name = "id")
     public Object[] createDataId() {

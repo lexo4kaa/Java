@@ -2,7 +2,6 @@ package com.company.shape.exception;
 
 public class ShapeException extends Exception {
     public ShapeException() {
-
     }
 
     public ShapeException(String message) {

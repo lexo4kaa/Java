@@ -1,15 +1,23 @@
 package com.company.shape.entity;
 
+import com.company.shape.exception.ShapeException;
+import com.company.shape.observer.CustomerObserver;
+import com.company.shape.observer.Observed;
+import com.company.shape.observer.TriangleEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Triangle extends Shape {
+import static com.company.shape.reader.TriangleReader.logger;
+
+public class Triangle extends Shape implements Observed {
     private Point point1;
     private Point point2;
     private Point point3;
+    private List<CustomerObserver> observers = new ArrayList<>();
 
     public Triangle(Point point1, Point point2, Point point3) {
-        new Shape();
+        super();
         this.point1 = point1;
         this.point2 = point2;
         this.point3 = point3;
@@ -21,6 +29,7 @@ public class Triangle extends Shape {
 
     public void setPoint1(Point point1) {
         this.point1 = point1;
+        notifyObservers();
     }
 
     public Point getPoint2() {
@@ -29,6 +38,7 @@ public class Triangle extends Shape {
 
     public void setPoint2(Point point2) {
         this.point2 = point2;
+        notifyObservers();
     }
 
     public Point getPoint3() {
@@ -37,6 +47,7 @@ public class Triangle extends Shape {
 
     public void setPoint3(Point point3) {
         this.point3 = point3;
+        notifyObservers();
     }
 
     public List<Point> getAllPoints() {
@@ -45,6 +56,30 @@ public class Triangle extends Shape {
         points.add(point2);
         points.add(point3);
         return points;
+    }
+
+    @Override
+    public void attach(CustomerObserver observer) {
+        if (observer != null) {
+            observers.add(observer);
+        }
+    }
+
+    @Override
+    public void detach(CustomerObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        TriangleEvent event = new TriangleEvent(this);
+        for (CustomerObserver observer : observers) {
+            try {
+                observer.parameterChanged(event);
+            } catch (ShapeException e) {
+                logger.error("observer.parameterChanged(event) is impossible because event -- " + event, e);
+            }
+        }
     }
 
     @Override

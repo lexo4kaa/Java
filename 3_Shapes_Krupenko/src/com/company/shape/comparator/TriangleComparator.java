@@ -10,7 +10,7 @@ public enum TriangleComparator implements Comparator<Shape> {
     ID {
         @Override
         public int compare(Shape shape1, Shape shape2) {
-            return CharSequence.compare(shape1.getShapeId(), shape2.getShapeId());
+            return shape1.getShapeId().compareTo(shape2.getShapeId());
         }
     },
     PERIMETER {
