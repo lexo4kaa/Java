@@ -12,7 +12,6 @@ public class EquilateralTriangleSpecification implements Specification {
             return false;
         }
         Triangle triangle = (Triangle) shape;
-        boolean result = TriangleProperty.isEquilateral(triangle);
-        return result;
+        return TriangleProperty.isEquilateral(triangle);
     }
 }

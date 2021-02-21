@@ -12,7 +12,6 @@ public class RectangularTriangleSpecification implements Specification {
             return false;
         }
         Triangle triangle = (Triangle) shape;
-        boolean result = TriangleProperty.isRectangular(triangle);
-        return result;
+        return TriangleProperty.isRectangular(triangle);
     }
 }

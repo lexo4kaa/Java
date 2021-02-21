@@ -12,7 +12,6 @@ public class ObtuseTriangleSpecification implements Specification {
             return false;
         }
         Triangle triangle = (Triangle) shape;
-        boolean result = TriangleProperty.isObtuse(triangle);
-        return result;
+        return TriangleProperty.isObtuse(triangle);
     }
 }

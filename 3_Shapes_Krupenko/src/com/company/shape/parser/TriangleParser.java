@@ -11,8 +11,8 @@ import static com.company.shape.reader.TriangleReader.logger;
 
 public class TriangleParser {
     private final static int NUMBER_OF_POINTS = 6;
-    private final static String SEPARATORS = " ";
-    public static List<double[]> dataParser(List<String> arrayList) throws ShapeException {
+    private final static String SEPARATORS = "[;@ ]";
+    public static List<Triangle> dataParser(List<String> arrayList) throws ShapeException {
         if (arrayList == null) {
             logger.error("List is null");
             throw new ShapeException("List is null");
@@ -39,7 +39,7 @@ public class TriangleParser {
                 triangles.add(resultArray);
             }
         }
-        return triangles;
+        return triangleParser(triangles);
     }
 
     public static List<Triangle> triangleParser(List<double[]> arrayList) throws ShapeException {

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.company.shape.reader.TriangleReader.logger;
+
 public class ShapeRepository {
     private static ShapeRepository repository = new ShapeRepository();
     private List<Shape> shapes = new ArrayList<>();
@@ -23,7 +25,8 @@ public class ShapeRepository {
 
     public boolean addShape(Shape shape) throws ShapeException {
         if (shape == null) {
-            throw new ShapeException("shape repository cannot store null");
+            logger.error("shape is null");
+            throw new ShapeException("shape is null");
         }
         return shapes.add(shape);
     }
@@ -34,7 +37,8 @@ public class ShapeRepository {
 
     public Shape setShape(int index, Shape shape) throws ShapeException {
         if (shape == null) {
-            throw new ShapeException("shape repository cannot store null");
+            logger.error("shape is null");
+            throw new ShapeException("shape is null");
         }
         return shapes.set(index, shape);
     }

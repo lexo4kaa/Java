@@ -4,7 +4,6 @@ import java.util.UUID;
 
 public class Shape {
     private String shapeId;
-
     private String name;
 
     public Shape() {
@@ -18,6 +17,10 @@ public class Shape {
 
     public String getShapeId() {
         return shapeId;
+    }
+
+    public void setShapeId(String shapeId) {
+        this.shapeId = shapeId;
     }
 
     public String getName() {

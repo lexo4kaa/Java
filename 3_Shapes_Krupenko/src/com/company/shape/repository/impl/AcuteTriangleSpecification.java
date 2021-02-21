@@ -12,7 +12,6 @@ public class AcuteTriangleSpecification implements Specification {
             return false;
         }
         Triangle triangle = (Triangle) shape;
-        boolean result = TriangleProperty.isAcute(triangle);
-        return result;
+        return TriangleProperty.isAcute(triangle);
     }
 }

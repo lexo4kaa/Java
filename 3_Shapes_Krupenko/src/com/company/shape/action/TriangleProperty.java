@@ -41,6 +41,7 @@ public class TriangleProperty {
         double cosA = (b*b + c*c - a*a) / 2*b*c;
         double cosB = (a*a + c*c - b*b) / 2*a*c;
         double cosC = (a*a + b*b - c*c) / 2*a*b;
+        System.out.println(cosA + " " + cosB + " " + cosC);
         return cosA < -Math.pow(10, -10) || cosB < -Math.pow(10, -10) || cosC < -Math.pow(10, -10);
     }
 
@@ -59,6 +60,6 @@ public class TriangleProperty {
         double a = calculation.distance(points.get(0), points.get(1));
         double b = calculation.distance(points.get(0), points.get(2));
         double c = calculation.distance(points.get(1), points.get(2));
-        return (a == b) && (a == c);
+        return Math.abs(a - b) < Math.pow(10, -10) && Math.abs(a - c) < Math.pow(10, -10);
     }
 }

@@ -12,7 +12,6 @@ public class IsoscelesTriangleSpecification implements Specification {
             return false;
         }
         Triangle triangle = (Triangle) shape;
-        boolean result = TriangleProperty.isIsosceles(triangle);
-        return result;
+        return TriangleProperty.isIsosceles(triangle);
     }
 }
