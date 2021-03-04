@@ -8,24 +8,25 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CustomerFileReader {
+    private static final String TEXT_DELIMITER = "\n";
     public static Logger logger = LogManager.getLogger();
-    public static List<String> fileReading(String path) throws CustomerException {
+    public static String fileReading(String path) throws CustomerException {
         if (path == null) {
             throw new CustomerException("Path is null");
         }
         Path filePath = Paths.get(path);
-        List<String> listOfTriangles;
+        StringBuilder text = new StringBuilder();
         try (Stream<String> streamLines = Files.lines(filePath)) {
-            listOfTriangles = streamLines.collect(Collectors.toList());
+            text.append(streamLines.collect(Collectors.joining(TEXT_DELIMITER)));
+            text.append("\n");
         } catch (IOException e) {
             logger.error("File in " + path + " not found", e);
             throw new CustomerException("File in " + path + " not found", e);
         }
-        return listOfTriangles;
+        return text.toString();
     }
 }

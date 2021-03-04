@@ -5,21 +5,21 @@ import java.util.ArrayList;
 
 public class TextComposite implements TextComponent {
     private List<TextComponent> textComponents;
-    private PartType type;
+    private TextType type;
     private static final String WORD_DELIMITER = " ";
     private static final String PARAGRAPH_DELIMITER = "\n\t";
 
-    public TextComposite(PartType type){
+    public TextComposite(TextType type){
         textComponents = new ArrayList<>();
         this.type = type;
     }
 
-    public void setTextType(PartType type) {
+    public void setTextType(TextType type) {
         this.type = type;
     }
 
     @Override
-    public PartType getPartType() {
+    public TextType getTextType() {
         return type;
     }
 
@@ -48,7 +48,7 @@ public class TextComposite implements TextComponent {
         StringBuilder sb = new StringBuilder();
         for (TextComponent t : textComponents) {
             sb.append(t.toString());
-            switch (t.getPartType()) {
+            switch (t.getTextType()) {
                 case WORD -> sb.append(WORD_DELIMITER);
                 case PARAGRAPH -> sb.append(PARAGRAPH_DELIMITER);
             }

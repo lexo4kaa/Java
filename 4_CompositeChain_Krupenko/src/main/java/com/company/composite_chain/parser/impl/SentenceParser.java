@@ -1,6 +1,6 @@
 package com.company.composite_chain.parser.impl;
 
-import com.company.composite_chain.composite.PartType;
+import com.company.composite_chain.composite.TextType;
 import com.company.composite_chain.composite.TextComponent;
 import com.company.composite_chain.composite.TextComposite;
 import com.company.composite_chain.parser.BaseParser;
@@ -18,7 +18,7 @@ public class SentenceParser implements BaseParser {
 
     @Override
     public TextComponent parse(String sentence) {
-        TextComponent sentenceComponent = new TextComposite(PartType.SENTENCE);
+        TextComponent sentenceComponent = new TextComposite(TextType.SENTENCE);
         String[] lexemes = sentence.split(SENTENCE_DELIMITER);
         for (String lexeme : lexemes) {
             TextComponent lexemeComponent = lexemeParser.parse(lexeme);

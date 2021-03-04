@@ -11,5 +11,5 @@ public interface TextComponent {
 
     List<TextComponent> getAll();
 
-    PartType getPartType();
+    TextType getTextType();
 }
