@@ -1,12 +1,9 @@
 package com.company.composite_chain.parser.impl;
 
-import com.company.composite_chain.composite.Symbol;
 import com.company.composite_chain.composite.TextComponent;
 import com.company.composite_chain.composite.TextComposite;
 import com.company.composite_chain.composite.TextType;
-import com.company.composite_chain.exception.CustomerException;
 import com.company.composite_chain.parser.BaseParser;
-import com.company.composite_chain.reader.CustomerFileReader;
 
 public class TextParser implements BaseParser {
     private static final TextParser INSTANCE = new TextParser();
@@ -30,10 +27,4 @@ public class TextParser implements BaseParser {
         }
         return textComponent;
     }
-    /*
-    public static void main(String[] args) throws CustomerException {
-        TextParser parser = TextParser.getInstance();
-        System.out.println(parser.parse(CustomerFileReader.fileReading("src/main/resources/text.txt")));
-    }
-    */
 }

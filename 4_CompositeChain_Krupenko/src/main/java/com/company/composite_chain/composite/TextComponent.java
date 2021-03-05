@@ -7,6 +7,8 @@ public interface TextComponent {
 
     void remove(TextComponent textComponent);
 
+    void set(int index, TextComponent textComponent);
+
     TextComponent get(int index);
 
     List<TextComponent> getAll();

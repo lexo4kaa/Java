@@ -7,7 +7,7 @@ public class TextComposite implements TextComponent {
     private List<TextComponent> textComponents;
     private TextType type;
     private static final String WORD_DELIMITER = " ";
-    private static final String PARAGRAPH_DELIMITER = "\n\t";
+    private static final String PARAGRAPH_DELIMITER = "\n";
 
     public TextComposite(TextType type){
         textComponents = new ArrayList<>();
@@ -31,6 +31,11 @@ public class TextComposite implements TextComponent {
     @Override
     public void remove(TextComponent textComponent) {
         textComponents.remove(textComponent);
+    }
+
+    @Override
+    public void set(int index, TextComponent textComponent) {
+       textComponent.set(index, textComponent);
     }
 
     @Override
