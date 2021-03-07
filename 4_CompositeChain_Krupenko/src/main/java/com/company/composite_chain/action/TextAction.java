@@ -101,6 +101,7 @@ public class TextAction {
                 TextComponent sentence = sentences.get(i);
                 if (sentence.getAll().size() < value) {
                     paragraph.remove(sentence);
+                    i--;
                 }
             }
         }
