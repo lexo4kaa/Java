@@ -1,9 +1,10 @@
-package com.company.composite_chain.parser.impl;
+package com.company.composite_chain.parser;
 
 import com.company.composite_chain.composite.Symbol;
 import com.company.composite_chain.composite.TextComponent;
 import com.company.composite_chain.composite.TextComposite;
 import com.company.composite_chain.composite.TextType;
+import com.company.composite_chain.parser.impl.TextParser;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
