@@ -1,12 +1,21 @@
 package com.company.multithreading.entity;
 
+import com.company.multithreading.exception.CustomerException;
+import com.company.multithreading.state.ShipState;
+import com.company.multithreading.state.impl.ShipDepartingState;
+
+import java.util.Optional;
 import java.util.UUID;
 
-public class Ship {
+import static com.company.multithreading.reader.CustomerFileReader.logger;
+
+public class Ship implements Runnable{
     private final String shipId;
     private final int capacity;
     private int occupiedPlaces;
     private ShipTarget shipTarget;
+    private ShipState shipState;
+    private Optional<Pier> pier;
 
     public Ship(int capacity, int occupiedPlaces, ShipTarget shipTarget) {
         shipId = UUID.randomUUID().toString();
@@ -39,12 +48,36 @@ public class Ship {
         this.shipTarget = shipTarget;
     }
 
+    public ShipState getShipState() {
+        return shipState;
+    }
+
+    public void setShipState(ShipState shipState) {
+        this.shipState = shipState;
+    }
+
+    public Optional<Pier> getPier() {
+        return pier;
+    }
+
+    public void setPier(Optional<Pier> pier) {
+        this.pier = pier;
+    }
+
     public void addContainer() {
         occupiedPlaces++;
     }
 
     public void removeContainer() {
         occupiedPlaces--;
+    }
+
+    public boolean isFull(){
+        return occupiedPlaces == capacity;
+    }
+
+    public boolean isEmpty(){
+        return occupiedPlaces == 0;
     }
 
     @Override
@@ -98,5 +131,16 @@ public class Ship {
         sb.append("\nOccupied places: ").append(occupiedPlaces);
         sb.append("\nShip target: ").append(shipTarget);
         return sb.toString();
+    }
+
+    @Override
+    public void run() {
+        do {
+            try {
+                shipState.doAction(this);
+            } catch (CustomerException e) {
+                logger.error("Cannot do action", e);
+            }
+        } while (shipState.getClass() != ShipDepartingState.class);
     }
 }
